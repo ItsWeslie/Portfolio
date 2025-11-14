@@ -24,7 +24,7 @@ function Projects() {
            Name:'Employee Management System',
            Img : ems,
            Description:"EMS to manage employee details.",
-           url:"https://github.com/ItsWeslie/EmployeeManagementSystem"
+           url:"https://github.com/ItsWeslie/EMS"
         },
         {
           Name: 'online bus pass management',

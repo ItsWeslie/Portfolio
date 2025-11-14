@@ -9,6 +9,9 @@ import { Contact } from 'lucide-react';
 import { Copyright } from 'lucide-react';
 
 function Footer() {
+
+  const year = new Date().getFullYear();
+  
   return (
     <>
     <div className='bg-black lg:flex lg:flex-row flex-col justify-between lg:mt-40 pt-3 lg:pt-10 pb-15'>
@@ -44,7 +47,7 @@ function Footer() {
       </div>
     </div>
     <div className='bg-black'>
-        <small className='text-white flex justify-center py-10'><Copyright className='mr-2'/>copyright's 2025 reserved by sam</small>
+        <small className='text-white flex justify-center py-10'><Copyright className='mr-2'/>copyright's {year} reserved by sam</small>
       </div>
     </>
   )
