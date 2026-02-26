@@ -117,7 +117,7 @@ export default function About2() {
               MISSION LOG 01
             </p>
 
-            <h2 className="text-4xl md:text-6xl font-bold text-white mt-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-white mt-6 text-center">
               About the Explorer
             </h2>
 

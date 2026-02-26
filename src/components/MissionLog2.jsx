@@ -19,7 +19,10 @@ export default function MissionLog2() {
     offset: ["start end", "end start"],
   });
 
-  const smoothScroll = useSpring(scrollYProgress, { stiffness: 80, damping: 20 });
+  const smoothScroll = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 20,
+  });
   const pathLength = useTransform(smoothScroll, [0, 1], [0, 1]);
   const energyOffset = useTransform(smoothScroll, [0, 1], ["0%", "100%"]);
 
@@ -78,17 +81,16 @@ export default function MissionLog2() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] [background-size:40px_40px] opacity-40" />
 
-      {/* Title */}
       <div className="relative z-10 text-center pt-24 pb-8 px-4">
-        <p className="text-yellow-400 tracking-[0.3em] text-sm">MISSION LOG 02</p>
-        <h2 className="text-3xl md:text-6xl font-bold text-white mt-4">
+        <p className="text-yellow-400 tracking-[0.3em] text-sm">
+          MISSION LOG 02
+        </p>
+        <h2 className="text-3xl md:text-6xl font-bold text-white mt-4 mb-5">
           Skills and Experience
         </h2>
       </div>
 
-      {/* ── MOBILE: vertical card stack ── */}
       <div className="md:hidden relative z-10 flex flex-col items-center gap-6 px-5 pb-16">
-        {/* Vertical line */}
         <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-yellow-400 via-yellow-500 to-yellow-700 opacity-40" />
 
         {roadmap.map((item, index) => (
@@ -96,7 +98,6 @@ export default function MissionLog2() {
         ))}
       </div>
 
-      {/* ── DESKTOP: original SVG path layout ── */}
       <motion.div
         style={{ rotateX: tiltX, rotateY: tiltY }}
         className="relative hidden md:block h-[1200px] xl:mt-32 min-h-[150vh]"
@@ -136,7 +137,6 @@ export default function MissionLog2() {
   );
 }
 
-/* ── Mobile card ── */
 function MobileCard({ data, index }) {
   const isLeft = index % 2 === 0;
 
@@ -150,7 +150,6 @@ function MobileCard({ data, index }) {
         isLeft ? "flex-row" : "flex-row-reverse"
       }`}
     >
-      {/* Planet thumbnail */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
@@ -162,10 +161,11 @@ function MobileCard({ data, index }) {
         }}
       />
 
-      {/* Info card */}
       <div className="flex-1 backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 text-white shadow-xl">
         <h3 className="text-sm font-semibold text-yellow-400">{data.title}</h3>
-        <p className="text-xs text-gray-300 mt-1">Experience: {data.experience}</p>
+        <p className="text-xs text-gray-300 mt-1">
+          Experience: {data.experience}
+        </p>
         <ul className="mt-2 text-xs space-y-0.5">
           {data.skills.map((skill, i) => (
             <li key={i}>• {skill}</li>
@@ -176,7 +176,6 @@ function MobileCard({ data, index }) {
   );
 }
 
-/* ── Desktop planet (unchanged) ── */
 function Planet({ data }) {
   return (
     <div
@@ -204,11 +203,14 @@ function Planet({ data }) {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-40" />
       </motion.div>
 
-      {/* Hover info panel */}
       <div className="absolute left-32 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition duration-500">
         <div className="w-64 p-6 rounded-xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl text-white">
-          <h3 className="text-lg font-semibold text-yellow-400">{data.title}</h3>
-          <p className="text-sm text-gray-300 mt-2">Experience: {data.experience}</p>
+          <h3 className="text-lg font-semibold text-yellow-400">
+            {data.title}
+          </h3>
+          <p className="text-sm text-gray-300 mt-2">
+            Experience: {data.experience}
+          </p>
           <ul className="mt-3 text-sm space-y-1">
             {data.skills.map((skill, i) => (
               <li key={i}>• {skill}</li>

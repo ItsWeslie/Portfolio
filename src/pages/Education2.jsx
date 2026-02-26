@@ -54,22 +54,24 @@ export default function Education2() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] [background-size:40px_40px] opacity-30 pointer-events-none" />
 
-      {/* Title */}
       <div className="relative z-10 text-center pt-16 pb-6 px-4">
-        <p className="text-yellow-400 tracking-[0.3em] text-sm">MISSION LOG 05</p>
+        <p className="text-yellow-400 tracking-[0.3em] text-sm">
+          MISSION LOG 05
+        </p>
         <h2 className="text-4xl xl:text-6xl font-bold text-white mt-4">
           Education Station
         </h2>
       </div>
 
-      {/* MOBILE: vertical timeline */}
       <div className="md:hidden relative z-10 flex flex-col items-center gap-5 px-5 w-full max-w-sm mt-4">
         <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-yellow-400 via-yellow-500 to-transparent opacity-40 pointer-events-none" />
 
-        <div className="relative z-10 w-28 h-28 rounded-full shrink-0
+        <div
+          className="relative z-10 w-28 h-28 rounded-full shrink-0
           bg-gradient-to-br from-yellow-300 via-orange-400 to-yellow-200
           shadow-[0_0_60px_20px_rgba(255,200,0,0.6)]
-          flex items-center justify-center text-white text-xs font-bold text-center px-3 mb-2">
+          flex items-center justify-center text-white text-xs font-bold text-center px-3 mb-2"
+        >
           SOFTWARE ENGINEER
         </div>
 
@@ -78,7 +80,6 @@ export default function Education2() {
         ))}
       </div>
 
-      {/* DESKTOP: docking station */}
       <div className="relative hidden md:flex w-full h-[650px] items-center justify-center mt-10">
         <motion.div
           animate={{ scale: active ? 1.08 : 1 }}
@@ -93,14 +94,27 @@ export default function Education2() {
 
         <div className="absolute w-72 h-72 border-2 border-[var(--gold-classic)]/40 rounded-full rotate-ring" />
 
-        <svg className="absolute w-full h-full pointer-events-none" overflow="visible">
+        <svg
+          className="absolute w-full h-full pointer-events-none"
+          overflow="visible"
+        >
           {modules.map((m) => (
-            <Beam key={m.id} active={active === m.id} x={m.offsetX} y={m.offsetY} />
+            <Beam
+              key={m.id}
+              active={active === m.id}
+              x={m.offsetX}
+              y={m.offsetY}
+            />
           ))}
         </svg>
 
         {modules.map((m) => (
-          <DockModule key={m.id} data={m} active={active} setActive={setActive} />
+          <DockModule
+            key={m.id}
+            data={m}
+            active={active}
+            setActive={setActive}
+          />
         ))}
       </div>
     </section>
@@ -125,7 +139,8 @@ function MobileCard({ data, index }) {
           border border-white/30 rounded-2xl p-4 text-white
           shadow-[0_0_20px_var(--gold-rich)] active:scale-95 transition-transform"
       >
-        <div className={`absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full
+        <div
+          className={`absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full
           bg-yellow-400 shadow-[0_0_10px_rgba(255,200,0,0.8)]
           ${isLeft ? "-right-[7px]" : "-left-[7px]"}`}
         />
@@ -158,7 +173,8 @@ function DockModule({ data, active, setActive }) {
       transition={{ opacity: { duration: 0.5 } }}
       className="absolute cursor-pointer"
       style={{
-        top: "50%", left: "50%",
+        top: "50%",
+        left: "50%",
         marginTop: -(40 + (isActive ? 40 : 0)),
         marginLeft: -data.width / 2,
         width: data.width,
@@ -170,8 +186,11 @@ function DockModule({ data, active, setActive }) {
         <div className="text-xs opacity-70">{data.year}</div>
         <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-[var(--gold-rich)] rounded-full shadow-[0_0_30px_var(--gold-rich)]" />
         {isActive && (
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-            className="mt-4 text-xs bg-white/10 border border-white/20 rounded-lg p-3">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-4 text-xs bg-white/10 border border-white/20 rounded-lg p-3"
+          >
             <p className="font-semibold">{data.gpa}</p>
             <p className="mt-1 opacity-80">{data.subjects}</p>
           </motion.div>
@@ -184,12 +203,25 @@ function DockModule({ data, active, setActive }) {
 function Beam({ active, x, y }) {
   return (
     <>
-      <line x1="50%" y1="50%" x2={`calc(50% + ${x}px)`} y2={`calc(50% + ${y}px)`}
-        stroke="var(--gold-light)" strokeWidth={active ? 4 : 2} opacity={active ? 1 : 0.3} />
+      <line
+        x1="50%"
+        y1="50%"
+        x2={`calc(50% + ${x}px)`}
+        y2={`calc(50% + ${y}px)`}
+        stroke="var(--gold-light)"
+        strokeWidth={active ? 4 : 2}
+        opacity={active ? 1 : 0.3}
+      />
       {active && (
-        <motion.circle cx="50%" cy="50%" r="6" fill="var(--gold-light)"
-          initial={{ x: 0, y: 0, opacity: 1 }} animate={{ x, y, opacity: [1, 1, 0] }}
-          transition={{ duration: 1.2, ease: "linear" }} />
+        <motion.circle
+          cx="50%"
+          cy="50%"
+          r="6"
+          fill="var(--gold-light)"
+          initial={{ x: 0, y: 0, opacity: 1 }}
+          animate={{ x, y, opacity: [1, 1, 0] }}
+          transition={{ duration: 1.2, ease: "linear" }}
+        />
       )}
     </>
   );
