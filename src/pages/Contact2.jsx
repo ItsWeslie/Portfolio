@@ -74,7 +74,7 @@ export default function Contact2() {
     <>
       <section
         id="contact"
-        className="relative min-h-screen bg-gradient-to-b from-[#2e1065] via-[#1a0f2e] to-[#0A0F1C] flex items-center justify-center overflow-hidden px-2.5 xl:px-6"
+        className="relative min-h-screen bg-gradient-to-b from-[#2e1065] via-[#1a0f2e] to-[#0A0F1C] flex items-center justify-center overflow-hidden px-6"
       >
         <div
           className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] 

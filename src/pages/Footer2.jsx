@@ -5,11 +5,19 @@ import { FaGithub, FaLinkedin, FaArrowUp } from "react-icons/fa";
 export default function Footer2() {
   const [showTop, setShowTop] = useState(false);
 
+  const navigationDetails = [
+    { section: "Home", id: "#home" },
+    { section: "About", id: "#about" },
+    { section: "Projects", id: "#projects" },
+    { section: "Education", id: "#education" },
+    { section: "Achievements", id: "#achievements" },
+    { section: "Contact", id: "#contact" },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       setShowTop(window.scrollY > 400);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -20,10 +28,7 @@ export default function Footer2() {
 
   return (
     <footer className="relative bg-gradient-to-b from-[#0A0F1C] to-black text-white overflow-hidden">
-      <div
-        className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] 
-        [background-size:60px_60px] opacity-20 pointer-events-none"
-      />
+      <div className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] [background-size:60px_60px] opacity-20 pointer-events-none" />
 
       <motion.div
         initial={{ x: "-100%" }}
@@ -34,17 +39,11 @@ export default function Footer2() {
 
       <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-12">
         <div>
-          <h3 className="text-yellow-400 tracking-widest text-sm">
-            MISSION STATUS
-          </h3>
-
+          <h3 className="text-yellow-400 tracking-widest text-sm">MISSION STATUS</h3>
           <h2 className="text-3xl font-bold mt-4">Operational & Ready</h2>
-
           <p className="text-gray-400 mt-4">
-            Currently open to exciting opportunities, collaborations, and
-            impactful engineering missions.
+            Currently open to exciting opportunities, collaborations, and impactful engineering missions.
           </p>
-
           <div className="flex items-center gap-3 mt-6">
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -53,30 +52,25 @@ export default function Footer2() {
             <p className="text-green-400 text-sm">Available for Projects</p>
           </div>
         </div>
-        <div>
-          <h3 className="text-yellow-400 tracking-widest text-sm">
-            NAVIGATION
-          </h3>
 
+        <div>
+          <h3 className="text-yellow-400 tracking-widest text-sm">NAVIGATION</h3>
           <ul className="mt-6 space-y-3 text-gray-300">
-            {["Home", "Skills", "Projects", "Education", "Contact"].map(
-              (item, index) => (
-                <li
-                  key={index}
+            {navigationDetails.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={item.id}
                   className="hover:text-yellow-400 transition cursor-pointer"
                 >
-                  {item}
-                </li>
-              ),
-            )}
+                  {item.section}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="text-yellow-400 tracking-widest text-sm">
-            SIGNAL CHANNELS
-          </h3>
-
+          <h3 className="text-yellow-400 tracking-widest text-sm">SIGNAL CHANNELS</h3>
           <div className="flex gap-6 mt-6">
             <a
               href="https://github.com/ItsWeslie"
@@ -86,7 +80,6 @@ export default function Footer2() {
             >
               <FaGithub />
             </a>
-
             <a
               href="https://linkedin.com/in/samweslie14"
               target="_blank"
@@ -96,10 +89,7 @@ export default function Footer2() {
               <FaLinkedin />
             </a>
           </div>
-
-          <p className="text-gray-500 mt-6 text-sm">
-            Let’s build something legendary.
-          </p>
+          <p className="text-gray-500 mt-6 text-sm">Let's build something legendary.</p>
         </div>
       </div>
 

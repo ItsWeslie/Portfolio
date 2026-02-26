@@ -4,6 +4,7 @@ import logo from "/src/assets/logo.png";
 import { Menu, X } from "lucide-react";
 
 function Navbar() {
+  
   const [isHovered, setIsHovered] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
