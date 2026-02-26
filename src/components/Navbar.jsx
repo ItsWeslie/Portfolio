@@ -31,7 +31,7 @@ function Navbar() {
             />
           </a>
           <span
-            className={`absolute left-12 xl:top-10 xl:left-0 transition-all duration-300 whitespace-nowrap ${
+            className={`absolute top-2 left-11 xl:top-2 xl:left-12 transition-all duration-300 whitespace-nowrap ${
               isLogoHovered
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-2"
@@ -73,7 +73,7 @@ function Navbar() {
               AI
             </Button>
             <div
-              className={`absolute top-1 right-9 xl:top-11 xl:right-0 transition-all duration-300 ${
+              className={`absolute top-1 right-9  md:top-2 md:right-12 transition-all duration-300 ${
                 isHovered
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-2"
