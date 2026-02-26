@@ -14,24 +14,15 @@ import planet4 from "/src/assets/planet4.jpg";
 export default function MissionLog2() {
   const sectionRef = useRef(null);
 
-  // Scroll progress
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const smoothScroll = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-  });
-
-  // SVG path animation
+  const smoothScroll = useSpring(scrollYProgress, { stiffness: 80, damping: 20 });
   const pathLength = useTransform(smoothScroll, [0, 1], [0, 1]);
+  const energyOffset = useTransform(smoothScroll, [0, 1], ["0%", "100%"]);
 
-  // Energy dot movement
-  const energyOffset = useTransform(smoothScroll, [0, 1], [0, 1]);
-
-  // Mouse tilt effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -83,26 +74,32 @@ export default function MissionLog2() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[150vh] bg-gradient-to-b 
-      from-[#0a0f1c] via-[#1a0f2e] to-[#2e1065] overflow-hidden"
+      className="relative bg-gradient-to-b from-[#0a0f1c] via-[#1a0f2e] to-[#2e1065] overflow-hidden"
     >
-      <div
-        className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] 
-        [background-size:40px_40px] opacity-40"
-      ></div>
+      <div className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] [background-size:40px_40px] opacity-40" />
 
-      <div className="relative z-10 text-center pt-32">
-        <p className="text-yellow-400 tracking-[0.3em] text-sm">
-          MISSION LOG 02
-        </p>
-        <h2 className="text-4xl md:text-6xl font-bold text-white mt-6">
+      {/* Title */}
+      <div className="relative z-10 text-center pt-24 pb-8 px-4">
+        <p className="text-yellow-400 tracking-[0.3em] text-sm">MISSION LOG 02</p>
+        <h2 className="text-3xl md:text-6xl font-bold text-white mt-4">
           Skills and Experience
         </h2>
       </div>
 
+      {/* ── MOBILE: vertical card stack ── */}
+      <div className="md:hidden relative z-10 flex flex-col items-center gap-6 px-5 pb-16">
+        {/* Vertical line */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-yellow-400 via-yellow-500 to-yellow-700 opacity-40" />
+
+        {roadmap.map((item, index) => (
+          <MobileCard key={index} data={item} index={index} />
+        ))}
+      </div>
+
+      {/* ── DESKTOP: original SVG path layout ── */}
       <motion.div
         style={{ rotateX: tiltX, rotateY: tiltY }}
-        className="relative h-[1200px] mt-32"
+        className="relative hidden md:block h-[1200px] xl:mt-32 min-h-[150vh]"
       >
         <svg viewBox="0 0 1000 1200" className="absolute inset-0 w-full h-full">
           <defs>
@@ -139,6 +136,47 @@ export default function MissionLog2() {
   );
 }
 
+/* ── Mobile card ── */
+function MobileCard({ data, index }) {
+  const isLeft = index % 2 === 0;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className={`relative z-10 flex items-center gap-4 w-full max-w-xs ${
+        isLeft ? "flex-row" : "flex-row-reverse"
+      }`}
+    >
+      {/* Planet thumbnail */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+        className="shrink-0 w-16 h-16 rounded-full shadow-[0_0_30px_rgba(250,204,21,0.5)]"
+        style={{
+          backgroundImage: `url(${data.icon})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+
+      {/* Info card */}
+      <div className="flex-1 backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 text-white shadow-xl">
+        <h3 className="text-sm font-semibold text-yellow-400">{data.title}</h3>
+        <p className="text-xs text-gray-300 mt-1">Experience: {data.experience}</p>
+        <ul className="mt-2 text-xs space-y-0.5">
+          {data.skills.map((skill, i) => (
+            <li key={i}>• {skill}</li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ── Desktop planet (unchanged) ── */
 function Planet({ data }) {
   return (
     <div
@@ -150,52 +188,27 @@ function Planet({ data }) {
       }}
     >
       <motion.div
-        className="
-        relative w-28 h-28 rounded-full
-        overflow-hidden
-        transition duration-500
-        group-hover:scale-110
-        group-hover:shadow-[0_0_80px_rgba(250,204,21,0.8)]
-        shadow-[0_0_40px_rgba(250,204,21,0.4)]
-        "
+        className="relative w-28 h-28 rounded-full overflow-hidden transition duration-500
+          group-hover:scale-110
+          group-hover:shadow-[0_0_80px_rgba(250,204,21,0.8)]
+          shadow-[0_0_40px_rgba(250,204,21,0.4)]"
         style={{
           backgroundImage: `url(${data.icon})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
         animate={{ rotate: 360 }}
-        transition={{
-          repeat: Infinity,
-          duration: 20,
-          ease: "linear",
-        }}
+        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
       >
-        <div className="absolute inset-0 rounded-full border border-white/20"></div>
-
-        <div
-          className="absolute top-0 left-0 w-full h-full 
-    bg-gradient-to-br from-white/30 via-transparent to-transparent 
-    opacity-40"
-        ></div>
+        <div className="absolute inset-0 rounded-full border border-white/20" />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-40" />
       </motion.div>
 
-      <div
-        className="absolute left-32 top-1/2 -translate-y-1/2 
-        opacity-0 group-hover:opacity-100 
-        transition duration-500"
-      >
-        <div
-          className="w-64 p-6 rounded-xl 
-          backdrop-blur-xl bg-white/10 
-          border border-white/20 
-          shadow-2xl text-white"
-        >
-          <h3 className="text-lg font-semibold text-yellow-400">
-            {data.title}
-          </h3>
-          <p className="text-sm text-gray-300 mt-2">
-            Experience: {data.experience}
-          </p>
+      {/* Hover info panel */}
+      <div className="absolute left-32 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition duration-500">
+        <div className="w-64 p-6 rounded-xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl text-white">
+          <h3 className="text-lg font-semibold text-yellow-400">{data.title}</h3>
+          <p className="text-sm text-gray-300 mt-2">Experience: {data.experience}</p>
           <ul className="mt-3 text-sm space-y-1">
             {data.skills.map((skill, i) => (
               <li key={i}>• {skill}</li>

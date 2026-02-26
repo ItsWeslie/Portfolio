@@ -74,7 +74,7 @@ export default function Contact2() {
     <>
       <section
         id="contact"
-        className="relative min-h-screen bg-gradient-to-b from-[#2e1065] via-[#1a0f2e] to-[#0A0F1C] flex items-center justify-center overflow-hidden px-6"
+        className="relative min-h-screen bg-gradient-to-b from-[#2e1065] via-[#1a0f2e] to-[#0A0F1C] flex items-center justify-center overflow-hidden px-2.5 xl:px-6"
       >
         <div
           className="absolute inset-0 bg-[radial-gradient(white_1px,transparent_1px)] 
@@ -87,7 +87,7 @@ export default function Contact2() {
               MISSION LOG 07
             </p>
 
-            <h2 className="text-6xl font-bold text-white mt-4">
+            <h2 className="text-4xl xl:text-6xl font-bold text-white mt-4">
               Establish Connection
             </h2>
 
@@ -120,7 +120,7 @@ export default function Contact2() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-10 shadow-[0_0_40px_var(--gold-rich)]"
+            className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-10 shadow-[0_0_40px_var(--gold-rich)] mb-25 xl:mb-0"
           >
             <div className="space-y-6">
               <input

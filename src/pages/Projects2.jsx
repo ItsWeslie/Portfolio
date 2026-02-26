@@ -70,20 +70,20 @@ export default function Projects2() {
       </div>
 
       <div
-        className="relative w-full max-w-6xl h-[450px] flex items-center justify-center"
+        className="relative w-70  xl:w-full xl:max-w-6xl h-[450px] flex items-center justify-center"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <button
           onClick={prev}
-          className="absolute left-5 z-30 p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/20 transition"
+          className="absolute -left-5 xl:left-5 z-30 p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/20 transition"
         >
           <ChevronLeft className="text-white" />
         </button>
 
         <button
           onClick={next}
-          className="absolute right-5 z-30 p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/20 transition"
+          className="absolute -right-5 xl:right-5 z-30 p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/20 transition"
         >
           <ChevronRight className="text-white" />
         </button>

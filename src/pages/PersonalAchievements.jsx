@@ -41,7 +41,7 @@ export default function PersonalAchievements() {
         <p className="text-yellow-400 tracking-[0.4em] text-sm">
           MISSION LOG 06
         </p>
-        <h2 className="text-6xl font-bold mt-4">Achievements</h2>
+        <h2 className="text-4xl xl:text-6xl font-bold mt-4">Achievements</h2>
       </div>
 
       <div className="space-y-32 max-w-6xl mx-auto px-6">

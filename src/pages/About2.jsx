@@ -113,7 +113,7 @@ export default function About2() {
         ></div>
         <div className="relative z-10 max-w-9xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="text-yellow-400 tracking-[0.3em] text-sm">
+            <p className="text-yellow-400 tracking-[0.3em] text-sm text-center xl:text-start">
               MISSION LOG 01
             </p>
 
@@ -121,10 +121,10 @@ export default function About2() {
               About the Explorer
             </h2>
 
-            <p className="text-gray-300 mt-8 leading-relaxed text-xl font-semibold">
+            <p className="text-gray-300 mt-8 leading-relaxed text-xl font-semibold text-center xl:text-start">
               I’m Sam Weslie Prabhakaran.
             </p>
-            <p className="text-gray-300 mt-2 leading-relaxed text-lg">
+            <p className="text-gray-300 mt-2 leading-relaxed text-lg mb-3 text-center xl:text-start">
               Software Engineer
             </p>
 
@@ -180,10 +180,10 @@ export default function About2() {
 
           <motion.div
             style={{ rotateX: tiltX, rotateY: tiltY, perspective: "1000px" }}
-            className="relative flex items-center justify-center ml-40"
+            className="relative flex items-center justify-center xl:ml-40 mt-20 mb-10"
           >
             <div
-              className="relative w-52 h-52 rounded-full 
+              className="relative xl:w-52 xl:h-52 rounded-full 
                           backdrop-blur-xl bg-white/10 
                           border border-white/20 
                           flex items-center justify-center"
@@ -191,13 +191,13 @@ export default function About2() {
               <img
                 src={profile}
                 alt="profile"
-                className="w-40 h-40 rounded-full object-cover"
+                className="w-30 h-30 xl:w-40 xl:h-40 rounded-full object-cover"
               />
             </div>
 
             <motion.div
               style={{ rotate: rotateInner }}
-              className="absolute w-72 h-72 rounded-full 
+              className="absolute w-62 h-62 xl:w-72 xl:h-72 rounded-full 
                        border border-yellow-400/30 
                        shadow-[0_0_40px_rgba(255,215,0,0.3)]"
             >
@@ -213,7 +213,7 @@ export default function About2() {
 
             <motion.div
               style={{ rotate: rotateOuter }}
-              className="absolute w-96 h-96 rounded-full 
+              className="absolute w-86 h-86 xl:w-96 xl:h-96 rounded-full 
                        border border-yellow-500/20 
                        shadow-[0_0_60px_rgba(255,215,0,0.2)]"
             >
