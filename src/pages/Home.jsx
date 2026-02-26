@@ -1,17 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-
 import logo from "/src/assets/logo.png";
 import gmailLogo from "/src/assets/gmail logo.webp";
 import linkedinLogo from "/src/assets/linkedin logo.png";
 import githubLogo from "/src/assets/github logo.jpg";
 import profile from "/src/assets/profile.jpg";
-
 import SplitText from "/src/components/TextAnimations/SplitText/SplitText.jsx";
 import TextPressure from "../components/TextAnimations/TextPressure/TextPressure";
 import { Button } from "@/components/ui/button";
-import { File } from 'lucide-react';
-
+import { File } from "lucide-react";
 
 const SocialLink = ({ icon, label, url, ...rest }) => (
   <a
@@ -26,13 +23,11 @@ const SocialLink = ({ icon, label, url, ...rest }) => (
   </a>
 );
 
-
 const MotionSocialLink = motion(SocialLink);
 
 function Home() {
   return (
     <>
-      
       <header className="gap-8 mx-auto px-5 sm:px-6 lg:px-8">
         <nav className="flex flex-col sm:flex-row justify-between items-center py-5 gap-4">
           <div className="text-center">
@@ -63,10 +58,8 @@ function Home() {
         </nav>
       </header>
 
-      
       <main className="mx-auto sm:px-6 px-5 lg:px-8 my-10 md:my-20">
         <section className="flex flex-col-reverse md:flex-row justify-between items-center gap-10">
-          
           <div className="md:ml-20 text-center md:text-left">
             <TextPressure
               text="Hello!"
@@ -83,7 +76,6 @@ function Home() {
               className=" sm: text-lg lg:mr-60 md:text-xl font-medium font-poppins ml-0"
             />
 
-            
             <div className="flex flex-wrap justify-center md:justify-start gap-5 py-5">
               <MotionSocialLink
                 icon={gmailLogo}
@@ -122,22 +114,15 @@ function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <Button
-                  asChild
-                  className="font-poppins font-medium"
-                >
-                  <a 
-                    href="/Sam_Weslie_Resume.pdf"
-                    download
-                  >
-                   <File size={18}/> Download Resume
+                <Button asChild className="font-poppins font-medium">
+                  <a href="/Sam_Weslie_Resume.pdf" download>
+                    <File size={18} /> Download Resume
                   </a>
                 </Button>
               </motion.div>
             </div>
           </div>
 
-          
           <motion.div
             className="w-48 h-48 md:w-80 md:h-80 md:mr-25"
             initial={{ opacity: 0, scale: 0.8 }}

@@ -36,7 +36,6 @@ html {
   @apply hover:underline
 }
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -68,6 +67,20 @@ html {
 .tech-stack-img{
   @apply mx-auto
 }
+
+@layer base {
+  :root {
+    --gold-light: #FFF6C9;
+    --gold-soft: #F6E27A;
+    --gold-classic: #E6C65C;
+    --gold-rich: #D4A437;
+    --gold-dark: #B8860B;
+    --gold-deep: #A66F00;
+    --gold-shadow: #7A4E00;
+    --gold-darker: #3B2A00;
+  }
+}
+
 
 @theme{
   --color-my-colour:#F6F6F6;
