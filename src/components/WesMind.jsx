@@ -32,7 +32,7 @@ function WesMind({ onClose }) {
 
   try {
     console.log(message)
-    const response = await fetch("https://sam-weslie-portfolio.vercel.app/chat", {
+    const response = await fetch("/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
