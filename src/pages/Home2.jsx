@@ -17,7 +17,6 @@ function Home2() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.6]);
   return (
     <>
-      <Navbar/>
       <main id="home" className="relative overflow-hidden min-h-screen bg-[url(/src/assets/bg-gif.gif)] bg-cover bg-center">
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/80" />
         <motion.div

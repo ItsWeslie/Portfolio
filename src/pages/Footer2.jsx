@@ -100,7 +100,7 @@ export default function Footer2() {
       {showTop && (
         <button
           onClick={scrollToTop}
-          className="z-50 fixed bottom-8 right-2 xl:right-8 bg-yellow-400 text-black p-3 rounded-full shadow-lg hover:scale-110 transition"
+          className="z-10 fixed bottom-8 right-2 xl:right-8 bg-yellow-400 text-black p-3 rounded-full shadow-lg hover:scale-110 transition"
         >
           <FaArrowUp />
         </button>

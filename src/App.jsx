@@ -7,10 +7,16 @@ import Contact2 from "./pages/Contact2";
 import Footer2 from "./pages/Footer2";
 import PersonalAchievements from "./pages/PersonalAchievements";
 import Education2 from "./pages/Education2";
+import WesMind from "./components/WesMind";
+import Navbar from "./components/Navbar";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  const [showWesMind, setShowWesMind] = useState(false);
   return (
     <>
+      <Navbar showWesMind={showWesMind} setShowWesMind={setShowWesMind} />
       <Toaster position="bottom-right" richColors />
       <section id="home">
         <Home2 />
@@ -22,10 +28,10 @@ function App() {
         <Projects2 />
       </section>
       <section id="education">
-      <Education2/>
+        <Education2 />
       </section>
       <section id="achievements">
-        <PersonalAchievements/>
+        <PersonalAchievements />
       </section>
       <section id="contact">
         <Contact2 />
@@ -33,6 +39,9 @@ function App() {
       <section id="footer">
         <Footer2 />
       </section>
+      <AnimatePresence>
+      {showWesMind && <WesMind onClose={() => setShowWesMind(false)} />}
+      </AnimatePresence>
     </>
   );
 }
