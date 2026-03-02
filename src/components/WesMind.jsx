@@ -31,8 +31,7 @@ function WesMind({ onClose }) {
   setIsTyping(true);
 
   try {
-    console.log(message)
-    const response = await fetch("https://sam-weslie-portfolio-backend.vercel.app/chatS", {
+    const response = await fetch("https://sam-weslie-portfolio-backend.vercel.app/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,9 +40,6 @@ function WesMind({ onClose }) {
     });
 
     const data = await response.json();
-
-    console.log(data);
-    
 
     const botReply = {
       sender: "bot",
