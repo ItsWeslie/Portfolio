@@ -67,9 +67,9 @@ function WesMind({ onClose }) {
       initial={{ opacity: 0, y: 80 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed top-25 right-5 md:bottom-5 md:right-5 z-50"
+      className="fixed top-25 right-5 md:top-auto md:bottom-5 md:right-5 z-50"
     >
-      <Card className="w-75 h-150 md:w-90 md:h-110 bg-gradient-to-br 
+      <Card className="w-75 h-120 md:w-90 md:h-110 bg-gradient-to-br 
       from-[#2e1065] via-[#1a122a] to-[#2e1065]  text-white shadow-2xl rounded-2xl border border-white/10 flex flex-col">
         
         <CardHeader className="relative">
