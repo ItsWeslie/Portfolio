@@ -51,7 +51,7 @@ function WesMind({ onClose }) {
   } catch (error) {
     setMessages((prev) => [
       ...prev,
-      { sender: "bot", text: "⚠️ Error connecting to AI." }
+      { sender: "bot", text: "Error connecting to AI." }
     ]);
   }
 

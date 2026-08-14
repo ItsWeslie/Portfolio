@@ -1,8 +1,7 @@
-import Navbar from "@/components/Navbar";
 import React from "react";
-import TextPressure from "../components/TextAnimations/TextPressure/TextPressure";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
+import { TextAnimate } from "@/components/ui/text-animate";
 
 function Home2() {
   const ref = useRef(null);
@@ -17,18 +16,19 @@ function Home2() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.6]);
   return (
     <>
-      <main id="home" className="relative overflow-hidden min-h-screen bg-[url(/src/assets/bg-gif.gif)] bg-cover bg-center">
+      <main
+        id="home"
+        className="relative overflow-hidden min-h-screen bg-[url(/src/assets/bg-gif.gif)] bg-cover bg-center"
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/80" />
         <motion.div
           ref={ref}
           style={{ y, scale, opacity }}
           className="relative z-10 flex items-center justify-center min-h-screen p-8"
         >
-          <TextPressure
-            text="Welcome, Voyager!"
-            textColor="white"
-            className="flex justify-self-center tracking-widest"
-          />
+          <TextAnimate animation="blurInUp" by="character" duration={5} className={`text-white text-9xl font-poppins font-bold`}>
+            Welcome, Voyager!
+          </TextAnimate>
         </motion.div>
       </main>
     </>
