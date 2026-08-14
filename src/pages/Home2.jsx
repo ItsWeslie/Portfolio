@@ -26,7 +26,12 @@ function Home2() {
           style={{ y, scale, opacity }}
           className="relative z-10 flex items-center justify-center min-h-screen p-8"
         >
-          <TextAnimate animation="blurInUp" by="character" duration={5} className={`text-white text-9xl font-poppins font-bold`}>
+          <TextAnimate
+            animation="blurInUp"
+            by="character"
+            duration={5}
+            className={`text-white text-2xl md:text-7xl lg:text-9xl font-poppins font-bold`}
+          >
             Welcome, Voyager!
           </TextAnimate>
         </motion.div>

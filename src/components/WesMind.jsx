@@ -80,7 +80,7 @@ function WesMind({ onClose }) {
             <LuBrain size={25} className="mt-0.5"/> WesMind
           </CardTitle>
           <CardDescription className="text-gray-400">
-            WesMind is personal AI assistant built using Google Gemini, trained on Sam's portfolio data.
+            WesMind is personal AI assistant built on Sam's personal informations.
           </CardDescription>
         </CardHeader>
 
