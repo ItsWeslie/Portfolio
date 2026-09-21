@@ -1,12 +1,16 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, Search, Star, Terminal, FolderGit2, CheckCircle2, ChevronRight } from "lucide-react";
+import emsScreenshot from "../assets/ems.webp";
+import busScreenshot from "../assets/bus.jpg";
+import studentScreenshot from "../assets/education2.jpg";
+import airlineScreenshot from "../assets/airline.jpg";
 
 const fallbackProjects = [
-  { id: 1, slug: "employee-management-system", title: "Employee Management System", description: "Manage workforce with role-based access and analytics.", github: "https://github.com/ItsWeslie/EMS", stack: ["React", "Java", "MySQL"], category: "Full Stack", featured: true, status: "Completed" },
-  { id: 2, slug: "bus-pass-management", title: "Online Bus Pass Management System", description: "Digital bus pass management for college students.", github: "https://github.com/ItsWeslie/Online-Bus-Pass-Management-System", stack: ["Web", "Database", "Java"], category: "Full Stack", status: "Completed" },
-  { id: 3, slug: "student-result-system", title: "Student Result Management System", description: "Automated result publishing system for students and administrators.", github: "https://github.com/ItsWeslie/StudentsResultManagementSystem", stack: ["Java", "MySQL", "Web"], category: "Full Stack", status: "Completed" },
-  { id: 4, slug: "airline-reservation-system", title: "Airline Ticket Reservation System", description: "Flight booking simulation with an administrative dashboard.", github: "https://github.com/ItsWeslie/AirLineTicketReservationSystem", stack: ["Java", "MySQL", "UI"], category: "Full Stack", status: "Completed" },
+  { id: 1, slug: "employee-management-system", title: "Employee Management System", description: "Manage workforce with role-based access and analytics.", github: "https://github.com/ItsWeslie/EMS", stack: ["React", "Java", "MySQL"], category: "Full Stack", featured: true, status: "Completed", image: emsScreenshot },
+  { id: 2, slug: "bus-pass-management", title: "Online Bus Pass Management System", description: "Digital bus pass management for college students.", github: "https://github.com/ItsWeslie/Online-Bus-Pass-Management-System", stack: ["Web", "Database", "Java"], category: "Full Stack", status: "Completed", image: busScreenshot },
+  { id: 3, slug: "student-result-system", title: "Student Result Management System", description: "Automated result publishing system for students and administrators.", github: "https://github.com/ItsWeslie/StudentsResultManagementSystem", stack: ["Java", "MySQL", "Web"], category: "Full Stack", status: "Completed", image: studentScreenshot },
+  { id: 4, slug: "airline-reservation-system", title: "Airline Ticket Reservation System", description: "Flight booking simulation with an administrative dashboard.", github: "https://github.com/ItsWeslie/AirLineTicketReservationSystem", stack: ["Java", "MySQL", "UI"], category: "Full Stack", status: "Completed", image: airlineScreenshot },
 ];
 
 const filters = ["All", "Full Stack", "Java", "React", "MySQL"];
@@ -70,11 +74,9 @@ export default function ProjectRepositoryExplorer({ projects = fallbackProjects 
         <div className="repo-detail-top"><span>{String(projects.findIndex(p=>p.id===selected.id)+1).padStart(2,"0")} / {String(projects.length).padStart(2,"0")}</span>{selected.featured&&<b>Featured Project</b>}</div>
         <div className="repo-detail-title"><div><h3>{selected.title}</h3><p>{selected.description}</p></div><span className="status-pill"><CheckCircle2 size={13}/>{selected.status}</span></div>
         <div className="repo-tech-row">{selected.stack.map(tag=><span key={tag}>{tag}</span>)}</div>
-        <div className="project-screenshot-placeholder"><div className="fake-app-bar"><i/><b>{selected.slug}</b></div><div className="fake-app-body"><aside><span/><span/><span/><span/></aside><main><div className="fake-stat-row"><i/><i/><i/></div><div className="fake-chart"><svg viewBox="0 0 300 90" preserveAspectRatio="none"><polyline points="0,75 35,63 65,67 100,44 130,52 170,30 205,39 245,16 300,8" fill="none" stroke="currentColor" strokeWidth="3"/></svg></div></main></div><div className="preview-overlay"><CodePreviewLabel title={selected.title}/></div></div>
+        <div className="project-screenshot-placeholder real-project-preview"><div className="fake-app-bar"><i/><b>{selected.slug}</b></div>{selected.image ? <img src={selected.image} alt={`${selected.title} screenshot`} loading="lazy"/> : <div className="missing-project-image"><Terminal size={20}/><span>Screenshot unavailable</span></div>}</div>
         <div className="repo-actions">{selected.liveUrl&&<a className="sw-btn primary liquid" href={selected.liveUrl} target="_blank" rel="noreferrer"><ExternalLink size={15}/> View Live Demo</a>}<a className="sw-btn" href={selected.github} target="_blank" rel="noreferrer"><Github size={15}/> View on GitHub</a></div>
       </motion.article>}</AnimatePresence>
     </div>
   </div>;
 }
-
-function CodePreviewLabel({title}) { return <div><Terminal size={18}/><span>{title}</span><small>project preview</small></div>; }
