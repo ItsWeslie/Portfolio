@@ -4,6 +4,7 @@ import "./about-avatar.css";
 import { Toaster } from "sonner";
 import SoftwarePortfolio from "./pages/SoftwarePortfolio";
 import AboutAvatar from "./components/AboutAvatar";
+import ProjectExplorerMount from "./components/ProjectExplorerMount";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Toaster position="bottom-right" richColors />
       <SoftwarePortfolio />
       <AboutAvatar />
+      <ProjectExplorerMount />
     </>
   );
 }
