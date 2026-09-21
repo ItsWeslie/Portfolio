@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Code2, Sparkles, Terminal } from "lucide-react";
-import avatar from "../assets/avatar-3d.webp";
+import avatar from "../assets/profile_3.png";
 import "../about-avatar.css";
 
 export default function AboutAvatar() {
