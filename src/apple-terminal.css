@@ -1,0 +1,18 @@
+:root{--terminal-red:#ff5f57;--terminal-yellow:#febc2e;--terminal-green:#28c840;--terminal-blue:#5ac8fa;--terminal-purple:#bf5af2;--terminal-cyan:#64d2ff;--terminal-white:#f5f5f7}
+/* macOS traffic-light controls across every terminal/editor window */
+.window-bar span,.project-terminal-bar>span{width:10px!important;height:10px!important;border-radius:50%!important;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.18),0 1px 2px rgba(0,0,0,.12)}
+.window-bar span:nth-of-type(1),.project-terminal-bar>span:nth-of-type(1){background:var(--terminal-red)!important}
+.window-bar span:nth-of-type(2),.project-terminal-bar>span:nth-of-type(2){background:var(--terminal-yellow)!important}
+.window-bar span:nth-of-type(3),.project-terminal-bar>span:nth-of-type(3){background:var(--terminal-green)!important}
+/* Hero terminal */
+.terminal{background:color-mix(in srgb,#111214 91%,transparent)!important;border-color:rgba(255,255,255,.11)!important;box-shadow:0 24px 60px rgba(0,0,0,.28)!important}
+.terminal .window-bar{background:rgba(255,255,255,.035);border-color:rgba(255,255,255,.09)!important}.terminal .window-bar b{color:#b8b8bd!important}.terminal p{color:#a9a9af!important}.terminal p span,.terminal .cursor{color:var(--terminal-green)!important;text-shadow:0 0 12px rgba(40,200,64,.22)}
+/* Editor gets the same macOS chrome while preserving code syntax */
+.editor .window-bar{background:color-mix(in srgb,var(--surface2) 72%,transparent)}.editor em{color:var(--terminal-purple)!important}.editor mark{color:var(--terminal-blue)!important}
+/* Project repository terminal */
+.project-terminal{background:color-mix(in srgb,#101113 93%,transparent)!important;border-color:rgba(255,255,255,.11)!important;box-shadow:0 22px 60px rgba(0,0,0,.25)!important;color:var(--terminal-white)!important}.project-terminal-bar{background:rgba(255,255,255,.035)!important;border-color:rgba(255,255,255,.09)!important}.project-terminal-bar b{color:#c7c7cc!important}.project-terminal-bar svg{color:var(--terminal-cyan)!important}.project-terminal-bar small{color:var(--terminal-green)!important}.project-terminal-body p{color:#f2f2f7!important}.project-terminal-body p i{color:var(--terminal-cyan)!important}.project-terminal-body .terminal-output{color:var(--terminal-green)!important}.project-terminal-body blockquote{color:var(--terminal-yellow)!important;border-left-color:var(--terminal-yellow)!important}.terminal-cursor{color:var(--terminal-green)!important;text-shadow:0 0 12px rgba(40,200,64,.35)}
+/* Any legacy preview bars that mimic terminal/macOS windows */
+.preview-bar i:nth-child(1){background:var(--terminal-red)!important}.preview-bar i:nth-child(2){background:var(--terminal-yellow)!important}.preview-bar i:nth-child(3){background:var(--terminal-green)!important}
+/* Light mode still keeps authentic dark terminal surfaces */
+:root:not([data-theme="dark"]) .terminal,:root:not([data-theme="dark"]) .project-terminal{color:var(--terminal-white)!important}
+@media(prefers-reduced-motion:reduce){.terminal-cursor,.cursor{animation:none!important}}
