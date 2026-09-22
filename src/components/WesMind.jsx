@@ -1,143 +1,20 @@
-import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { X } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
-import { LuBrain } from "react-icons/lu";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUp, Sparkles, X } from "lucide-react";
+import "../wesmind.css";
 
-
-function WesMind({ onClose }) {
-
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hello Voyager 👋 Ask me anything." }
-  ]);
-  const [isTyping, setIsTyping] = useState(false);
-
-  const chatEndRef = useRef(null);
-
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
-
-
-  const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  const userMessage = { sender: "user", text: message };
-  setMessages((prev) => [...prev, userMessage]);
-  setMessage("");
-  setIsTyping(true);
-
-  try {
-    const response = await fetch("https://sam-weslie-portfolio-backend.vercel.app/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ message }),
-    });
-
-    const data = await response.json();
-
-    const botReply = {
-      sender: "bot",
-      text: data.reply,
-    };
-
-    setMessages((prev) => [...prev, botReply]);
-
-  } catch (error) {
-    setMessages((prev) => [
-      ...prev,
-      { sender: "bot", text: "Error connecting to AI." }
-    ]);
-  }
-
-  setIsTyping(false);
-};
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 80 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="fixed top-25 right-5 md:top-auto md:bottom-5 md:right-5 z-50"
-    >
-      <Card className="w-75 h-120 md:w-90 md:h-110 bg-gradient-to-br 
-      from-[#2e1065] via-[#1a122a] to-[#2e1065]  text-white shadow-2xl rounded-2xl border border-white/10 flex flex-col">
-        
-        <CardHeader className="relative">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-white"
-          >
-            <X size={20} />
-          </button>
-
-          <CardTitle className="text-xl font-bold flex gap-1.5">
-            <LuBrain size={25} className="mt-0.5"/> WesMind
-          </CardTitle>
-          <CardDescription className="text-gray-400">
-            WesMind is personal AI assistant built on Sam's personal informations.
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="flex-1 overflow-y-auto px-4 space-y-3">
-          {messages.map((msg, index) => (
-            <div
-              key={index}
-              className={`flex ${
-                msg.sender === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
-              <div
-                className={`px-3 py-2 rounded-xl text-sm max-w-[70%] ${
-                  msg.sender === "user"
-                    ? "bg-indigo-600 text-white"
-                    : "bg-white/10 text-gray-200"
-                }`}
-              >
-                {msg.text}
-              </div>
-            </div>
-          ))}
-
-          {isTyping && (
-            <div className="flex justify-start">
-              <div className="px-4 py-2 rounded-xl bg-white/10 text-gray-300 text-sm flex gap-1">
-                <span className="animate-bounce">.</span>
-                <span className="animate-bounce delay-150">.</span>
-                <span className="animate-bounce delay-300">.</span>
-              </div>
-            </div>
-          )}
-
-          <div ref={chatEndRef} />
-        </CardContent>
-
-        <div className="p-4 border-t border-white/10">
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <Input
-              placeholder="Type your message..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-              className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-            />
-
-            <Button
-              type="submit"
-              className="w-full bg-[var(--gold-rich)] hover:bg-[var(--gold-deep)] rounded-xl"
-            >
-              Send
-            </Button>
-          </form>
-        </div>
-      </Card>
-    </motion.div>
-  );
+function Logo(){return <span className="wes-logo"><b>W</b><Sparkles/></span>}
+export default function WesMind({open=true,onClose=()=>{}}){
+ const [message,setMessage]=useState(""); const [messages,setMessages]=useState([{sender:"bot",text:"Hi, I'm WesMind 👋 I can help you explore Sam's engineering work and experience. Ask me anything!"}]); const [typing,setTyping]=useState(false); const end=useRef(null);
+ const suggestions=["Tell me about Sam's experience","Show me his projects","What technologies does he use?","Show Java certifications","Summarize his profile"];
+ useEffect(()=>{end.current?.scrollIntoView({behavior:"smooth"})},[messages,typing]);
+ useEffect(()=>{const esc=e=>e.key==="Escape"&&onClose();window.addEventListener("keydown",esc);return()=>window.removeEventListener("keydown",esc)},[onClose]);
+ const send=async text=>{const q=text.trim();if(!q)return;setMessages(p=>[...p,{sender:"user",text:q}]);setMessage("");setTyping(true);try{const r=await fetch("https://sam-weslie-portfolio-backend.vercel.app/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:q})});const d=await r.json();setMessages(p=>[...p,{sender:"bot",text:d.reply||"I couldn't find an answer for that."}])}catch{setMessages(p=>[...p,{sender:"bot",text:"I’m having trouble connecting right now. Please try again shortly."}])}finally{setTyping(false)}};
+ const submit=e=>{e.preventDefault();send(message)};
+ return <AnimatePresence>{open&&<><motion.button className="wes-backdrop" aria-label="Close WesMind" onClick={onClose} initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}/><motion.aside className="wes-panel" initial={{x:"105%",opacity:0}} animate={{x:0,opacity:1}} exit={{x:"105%",opacity:0}} transition={{type:"spring",stiffness:260,damping:28}}>
+  <header className="wes-head"><div><Logo/><span><b>WesMind</b><small>Portfolio Intelligence</small></span></div><button onClick={onClose} aria-label="Close WesMind"><X/></button></header>
+  <div className="wes-chat">{messages.map((m,i)=><motion.div key={i} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} className={`wes-message ${m.sender}`}>{m.text}</motion.div>)}{messages.length===1&&<div className="wes-suggestions">{suggestions.map(s=><button key={s} onClick={()=>send(s)}>{s}<span>→</span></button>)}</div>}{typing&&<div className="wes-message bot wes-typing"><i/><i/><i/></div>}<div ref={end}/></div>
+  <form className="wes-composer" onSubmit={submit}><input value={message} onChange={e=>setMessage(e.target.value)} placeholder="Ask WesMind..." required/><button aria-label="Send"><ArrowUp/></button></form><footer>Powered by WesMind · Built for meaningful conversations</footer>
+ </motion.aside></>}</AnimatePresence>
 }
-
-export default WesMind;
+export function WesMindMark(){return <Logo/>}
