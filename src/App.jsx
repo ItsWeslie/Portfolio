@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import "./education-record.css";
 import "./about-avatar.css";
@@ -12,6 +12,7 @@ import WesMind, { WesMindMark } from "./components/WesMind";
 
 function App() {
   const [wesMindOpen,setWesMindOpen]=useState(false);
+  useEffect(()=>{const open=()=>setWesMindOpen(true);window.addEventListener("open-wesmind",open);return()=>window.removeEventListener("open-wesmind",open)},[]);
   return <>
     <Toaster position="bottom-right" richColors />
     <SoftwarePortfolio />
