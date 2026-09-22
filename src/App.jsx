@@ -3,10 +3,12 @@ import "./education-record.css";
 import "./about-avatar.css";
 import "./project-screenshots.css";
 import "./apple-terminal.css";
+import "./certification-vault.css";
 import { Toaster } from "sonner";
 import SoftwarePortfolio from "./pages/SoftwarePortfolio";
 import AboutAvatar from "./components/AboutAvatar";
 import ProjectExplorerMount from "./components/ProjectExplorerMount";
+import CertificationVaultMount from "./components/CertificationVaultMount";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
       <SoftwarePortfolio />
       <AboutAvatar />
       <ProjectExplorerMount />
+      <CertificationVaultMount />
     </>
   );
 }
