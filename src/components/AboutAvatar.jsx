@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Code2, Sparkles, Terminal } from "lucide-react";
-import avatar from "../assets/avatar-3d.webp";
+import avatar from "../assets/profile_3.png";
 import "../about-avatar.css";
 
 export default function AboutAvatar() {
@@ -45,11 +45,31 @@ export default function AboutAvatar() {
       transition={{ duration: 0.7 }}
     >
       <div className="avatar-grid" />
-      <motion.div className="avatar-orbit orbit-one" animate={{ rotate: 360 }} transition={{ duration: 22, repeat: Infinity, ease: "linear" }} />
-      <motion.div className="avatar-orbit orbit-two" animate={{ rotate: -360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} />
-      <motion.div className="avatar-particle p1" animate={{ y: [0, -12, 0], opacity: [0.35, 1, 0.35] }} transition={{ duration: 3.2, repeat: Infinity }} />
-      <motion.div className="avatar-particle p2" animate={{ y: [0, 10, 0], opacity: [0.25, 0.8, 0.25] }} transition={{ duration: 4.1, repeat: Infinity }} />
-      <motion.div className="avatar-particle p3" animate={{ y: [0, -8, 0], opacity: [0.3, 0.9, 0.3] }} transition={{ duration: 2.7, repeat: Infinity }} />
+      <motion.div
+        className="avatar-orbit orbit-one"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="avatar-orbit orbit-two"
+        animate={{ rotate: -360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="avatar-particle p1"
+        animate={{ y: [0, -12, 0], opacity: [0.35, 1, 0.35] }}
+        transition={{ duration: 3.2, repeat: Infinity }}
+      />
+      <motion.div
+        className="avatar-particle p2"
+        animate={{ y: [0, 10, 0], opacity: [0.25, 0.8, 0.25] }}
+        transition={{ duration: 4.1, repeat: Infinity }}
+      />
+      <motion.div
+        className="avatar-particle p3"
+        animate={{ y: [0, -8, 0], opacity: [0.3, 0.9, 0.3] }}
+        transition={{ duration: 2.7, repeat: Infinity }}
+      />
       <motion.img
         className="avatar-3d"
         src={avatar}
@@ -57,10 +77,34 @@ export default function AboutAvatar() {
         draggable="false"
         style={{ x: avatarX, y: avatarY }}
       />
-      <motion.div className="avatar-chip chip-code glass" animate={{ y: [0, -7, 0] }} transition={{ duration: 3.5, repeat: Infinity }}><Code2 size={15}/><span>clean_code</span></motion.div>
-      <motion.div className="avatar-chip chip-build glass" animate={{ y: [0, 7, 0] }} transition={{ duration: 4.2, repeat: Infinity }}><Terminal size={15}/><span>build → ship</span></motion.div>
-      <div className="avatar-identity glass"><div><i/><span>DEVELOPER PROFILE</span></div><strong>Sam Weslie</strong><small>Software Engineer</small><p><Sparkles size={13}/> Building useful software with curiosity.</p></div>
+      <motion.div
+        className="avatar-chip chip-code glass"
+        animate={{ y: [0, -7, 0] }}
+        transition={{ duration: 3.5, repeat: Infinity }}
+      >
+        <Code2 size={15} />
+        <span>clean_code</span>
+      </motion.div>
+      <motion.div
+        className="avatar-chip chip-build glass"
+        animate={{ y: [0, 7, 0] }}
+        transition={{ duration: 4.2, repeat: Infinity }}
+      >
+        <Terminal size={15} />
+        <span>build → ship</span>
+      </motion.div>
+      <div className="avatar-identity glass">
+        <div>
+          <i />
+          <span>DEVELOPER PROFILE</span>
+        </div>
+        <strong>Sam Weslie Prabhakaran</strong>
+        <small>Assistant System Engineer @ TCS</small>
+        <p className="tracking-wide">
+          <Sparkles size={13} /> Where words end, my code begins to tell the story!.
+        </p>
+      </div>
     </motion.aside>,
-    target
+    target,
   );
 }
