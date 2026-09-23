@@ -9,12 +9,14 @@ import SoftwarePortfolio from "./pages/SoftwarePortfolio";
 import AboutAvatar from "./components/AboutAvatar";
 import ProjectExplorerMount from "./components/ProjectExplorerMount";
 import WesMind, { WesMindMark } from "./components/WesMind";
+import DevelopmentTicker from "./components/DevelopmentTicker";
 
 function App() {
   const [wesMindOpen,setWesMindOpen]=useState(false);
   useEffect(()=>{const open=()=>setWesMindOpen(true);window.addEventListener("open-wesmind",open);return()=>window.removeEventListener("open-wesmind",open)},[]);
   return <>
     <Toaster position="bottom-right" richColors />
+    <DevelopmentTicker />
     <SoftwarePortfolio />
     <AboutAvatar />
     <ProjectExplorerMount />
