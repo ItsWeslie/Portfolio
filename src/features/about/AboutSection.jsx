@@ -1,3 +1,4 @@
+import SectionHeading from "../../components/ui/SectionHeading";
 import { Code2, Terminal, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 import { reveal } from "../shared/reveal";
@@ -6,16 +7,12 @@ export default function AboutSection() {
   return (
     <>
         <section id="about" className="sw-section sw-block">
-          <motion.div {...reveal}>
-            <p className="eyebrow">01. ABOUT</p>
-            <h2>Engineering with curiosity.</h2>
-            <p className="section-copy">
+          <SectionHeading eyebrow="01. ABOUT" title="Engineering with curiosity.">
               I’m Sam Weslie Prabhakaran, a Software Engineer focused on turning
               ideas into real world solutions. I enjoy understanding how systems
               work, solving real world problems, and continuously expanding my
               engineering knowledge.
-            </p>
-          </motion.div>
+            </SectionHeading>
           <motion.div className="principles" {...reveal}>
             {[
               [Code2, "Problem solver"],
