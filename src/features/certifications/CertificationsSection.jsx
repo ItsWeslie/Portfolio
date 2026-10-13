@@ -3,7 +3,6 @@ import CertificationVault from "../../components/CertificationVault";
 
 export default function CertificationsSection() {
   return (
-    <>
         <section id="certifications" className="sw-section sw-block">
           <SectionHeading eyebrow="05. CERTIFICATIONS" title="Validated learning.">
               Professional certifications and learning achievements that
@@ -11,6 +10,5 @@ export default function CertificationsSection() {
             </SectionHeading>
           <CertificationVault />
         </section>
-    </>
   );
 }
