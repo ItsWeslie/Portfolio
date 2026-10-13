@@ -1,0 +1,17 @@
+.stack-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:36px}
+.stack-item{min-height:112px;border:1px solid var(--line);border-radius:14px;background:color-mix(in srgb,var(--surface2) 52%,transparent);padding:16px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;position:relative;overflow:hidden}
+.stack-item:after{content:"";position:absolute;width:70px;height:70px;border-radius:50%;right:-30px;bottom:-35px;background:color-mix(in srgb,var(--accent) 8%,transparent);filter:blur(4px);transition:.35s}
+.stack-item:hover:after{transform:scale(1.6);background:color-mix(in srgb,var(--accent) 15%,transparent)}
+.tech-logo{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb,var(--surface2) 72%,transparent);border:1px solid var(--line);box-shadow:0 8px 22px rgba(0,0,0,.08);position:relative;z-index:1}
+.tech-logo svg{width:25px;height:25px}
+.stack-item b{font-size:13px;position:relative;z-index:1}
+.tech-js{color:#f7df1e}
+.tech-react{color:#61dafb}
+.tech-java{color:#e76f00}
+.tech-spring{color:#6db33f}
+.tech-mysql{color:#4479a1}
+.tech-tailwind{color:#06b6d4}
+.tech-html{color:#e34f26}
+.tech-css{color:#1572b6}
+.tech-git{color:#f05032}
+.tech-github{color:var(--text)}
