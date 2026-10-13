@@ -10,7 +10,6 @@ import CertificationsSection from "../features/certifications/CertificationsSect
 import ContactSection from "../features/contact/ContactSection";
 import Footer from "../features/footer/Footer";
 
-
 export default function SoftwarePortfolio() {
   return (
     <div className="sw-shell">
