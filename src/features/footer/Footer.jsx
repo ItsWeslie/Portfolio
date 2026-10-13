@@ -3,7 +3,6 @@ import profile from "/src/assets/logo.png";
 
 export default function Footer() {
   return (
-    <>
       <footer className="sw-footer">
         <div className="sw-brand">
           <span>
@@ -36,6 +35,5 @@ export default function Footer() {
           </a>
         </div>
       </footer>
-    </>
   );
 }
