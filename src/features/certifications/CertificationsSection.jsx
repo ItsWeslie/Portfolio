@@ -1,7 +1,5 @@
 import SectionHeading from "../../components/ui/SectionHeading";
-import { motion } from "framer-motion";
 import CertificationVault from "../../components/CertificationVault";
-import { reveal } from "../shared/reveal";
 
 export default function CertificationsSection() {
   return (
