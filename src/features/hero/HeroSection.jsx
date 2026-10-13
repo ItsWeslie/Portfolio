@@ -4,7 +4,6 @@ import { reveal } from "../shared/reveal";
 
 export default function HeroSection() {
   return (
-    <>
         <section id="home" className="sw-hero sw-section">
           <motion.div className="hero-copy" {...reveal}>
             <p className="eyebrow">BUILD · SOLVE · IMPROVE</p>
@@ -94,6 +93,5 @@ export default function HeroSection() {
             <div className="orb orb-b" />
           </motion.div>
         </section>
-    </>
   );
 }
