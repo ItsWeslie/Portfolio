@@ -2,7 +2,7 @@ import { Download, Terminal } from "lucide-react";
 import { motion } from "framer-motion";
 import { reveal } from "../shared/reveal";
 
-export default function HeroSection({  }) {
+export default function HeroSection() {
   return (
     <>
         <section id="home" className="sw-hero sw-section">
