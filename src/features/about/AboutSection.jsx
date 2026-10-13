@@ -5,7 +5,6 @@ import { reveal } from "../shared/reveal";
 
 export default function AboutSection() {
   return (
-    <>
         <section id="about" className="sw-section sw-block">
           <SectionHeading eyebrow="01. ABOUT" title="Engineering with curiosity.">
               I’m Sam Weslie Prabhakaran, a Software Engineer focused on turning
@@ -26,6 +25,5 @@ export default function AboutSection() {
             ))}
           </motion.div>
         </section>
-    </>
   );
 }
