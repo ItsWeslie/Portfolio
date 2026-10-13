@@ -1,0 +1,4 @@
+
+.sw-block{padding:105px 0;border-top:1px solid var(--line)}
+
+.sw-block h2,.contact-section h2{font-size:clamp(34px,4vw,54px);letter-spacing:-.045em;margin:0}
