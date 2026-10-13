@@ -19,7 +19,6 @@ export default function EducationSection() {
     2,
   );
   return (
-    <>
         <section
           id="education"
           className="sw-section sw-block education-section"
@@ -128,6 +127,5 @@ export default function EducationSection() {
             </motion.div>
           </div>
         </section>
-    </>
   );
 }
