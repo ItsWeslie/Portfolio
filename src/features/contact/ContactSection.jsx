@@ -23,7 +23,6 @@ export default function ContactSection() {
     }
   };
   return (
-    <>
         <section id="contact" className="sw-section contact-section">
           <motion.div className="contact-copy" {...reveal}>
             <p className="eyebrow">06. CONTACT</p>
@@ -94,6 +93,5 @@ export default function ContactSection() {
             </button>
           </motion.form>
         </section>
-    </>
   );
 }
