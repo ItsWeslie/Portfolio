@@ -1,0 +1,5 @@
+
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
+.principle{border:1px solid var(--line);background:color-mix(in srgb,var(--surface2) 45%,transparent);padding:24px;border-radius:14px;display:flex;align-items:center;gap:12px}
+
+.principle svg{color:var(--accent)}
