@@ -1,0 +1,6 @@
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.cert-card{border:1px solid var(--line);border-radius:14px;padding:18px;background:color-mix(in srgb,var(--surface2) 50%,transparent);display:flex;gap:13px;align-items:center}
+.cert-card svg{color:var(--accent);flex:none}
+.cert-card b,.cert-card small{display:block}
+.cert-card b{font-size:12px}
+.cert-card small{color:var(--muted);font-size:9px;margin-top:4px}
