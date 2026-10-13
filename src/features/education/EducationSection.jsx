@@ -1,9 +1,22 @@
+import { useState } from "react";
 import { Code2, Terminal, GraduationCap, BookOpen, CalendarDays, BarChart3 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { education } from "./data/education";
 import { reveal } from "../shared/reveal";
 
-export default function EducationSection({ activeEducation, setActiveEducation, edu, eduJson }) {
+export default function EducationSection() {
+  const [activeEducation, setActiveEducation] = useState(0);
+  const edu = education[activeEducation];
+  const eduJson = JSON.stringify(
+    {
+      qualification: edu.fullTitle,
+      period: edu.year,
+      score: edu.meta,
+      focus: edu.focus,
+    },
+    null,
+    2,
+  );
   return (
     <>
         <section

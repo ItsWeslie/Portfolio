@@ -1,8 +1,27 @@
+import { useState } from "react";
+import { toast } from "sonner";
+import { sendContactMessage } from "./emailService";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { reveal } from "../shared/reveal";
 
-export default function ContactSection({ form, setForm, loading, submit }) {
+export default function ContactSection() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await sendContactMessage(form);
+      toast.success("Message sent successfully");
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      toast.error("Unable to send. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
         <section id="contact" className="sw-section contact-section">

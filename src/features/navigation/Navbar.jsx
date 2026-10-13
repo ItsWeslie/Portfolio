@@ -1,8 +1,10 @@
 import { Moon, Sun, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import profile from "/src/assets/logo.png";
+import useTheme from "../../hooks/useTheme";
 
-export default function Navbar({ theme, setTheme }) {
+export default function Navbar() {
+  const [theme, setTheme] = useTheme();
   return (
     <>
       <header className="sw-nav glass">
