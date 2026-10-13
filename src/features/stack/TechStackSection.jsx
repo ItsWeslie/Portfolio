@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { stack } from "./data/technologies";
 import { reveal } from "../shared/reveal";
 
-export default function TechStackSection({  }) {
+export default function TechStackSection() {
   return (
     <>
         <section id="stack" className="sw-section sw-block">

@@ -2,7 +2,7 @@ import { Code2, Terminal, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 import { reveal } from "../shared/reveal";
 
-export default function AboutSection({  }) {
+export default function AboutSection() {
   return (
     <>
         <section id="about" className="sw-section sw-block">

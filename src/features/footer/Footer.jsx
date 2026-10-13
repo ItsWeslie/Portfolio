@@ -1,7 +1,7 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import profile from "/src/assets/logo.png";
 
-export default function Footer({  }) {
+export default function Footer() {
   return (
     <>
       <footer className="sw-footer">
