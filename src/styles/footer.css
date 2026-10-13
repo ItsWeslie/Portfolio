@@ -1,0 +1,4 @@
+.sw-footer{width:min(1180px,calc(100% - 48px));margin:auto;border-top:1px solid var(--line);padding:28px 0 36px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:10px}
+.sw-footer>div:last-child{display:flex;gap:14px}
+.sw-footer svg{width:16px}
+.sw-footer .sw-brand{color:var(--text)}
