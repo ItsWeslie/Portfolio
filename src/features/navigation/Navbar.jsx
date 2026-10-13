@@ -6,7 +6,6 @@ import useTheme from "../../hooks/useTheme";
 export default function Navbar() {
   const [theme, setTheme] = useTheme();
   return (
-    <>
       <header className="sw-nav glass">
         <a className="sw-brand" href="#home">
           <span>
@@ -58,6 +57,5 @@ export default function Navbar() {
           </a>
         </div>
       </header>
-    </>
   );
 }

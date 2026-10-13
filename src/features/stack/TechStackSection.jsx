@@ -5,7 +5,6 @@ import { reveal } from "../shared/reveal";
 
 export default function TechStackSection() {
   return (
-    <>
         <section id="stack" className="sw-section sw-block">
           <SectionHeading eyebrow="03. TECH STACK" title="Technologies I work with.">
               A practical toolkit for building modern applications from
@@ -26,6 +25,5 @@ export default function TechStackSection() {
             ))}
           </motion.div>
         </section>
-    </>
   );
 }
