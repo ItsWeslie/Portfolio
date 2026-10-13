@@ -1,3 +1,4 @@
+import SectionHeading from "../../components/ui/SectionHeading";
 import { motion } from "framer-motion";
 import { stack } from "./data/technologies";
 import { reveal } from "../shared/reveal";
@@ -6,14 +7,10 @@ export default function TechStackSection() {
   return (
     <>
         <section id="stack" className="sw-section sw-block">
-          <motion.div {...reveal}>
-            <p className="eyebrow">03. TECH STACK</p>
-            <h2>Technologies I work with.</h2>
-            <p className="section-copy">
+          <SectionHeading eyebrow="03. TECH STACK" title="Technologies I work with.">
               A practical toolkit for building modern applications from
               interface to backend.
-            </p>
-          </motion.div>
+            </SectionHeading>
           <motion.div className="stack-grid" {...reveal}>
             {stack.map(({ name, Icon, className }) => (
               <motion.div
