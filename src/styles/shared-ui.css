@@ -1,0 +1,7 @@
+.sw-btn{min-height:42px;padding:0 16px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--text);display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:12px;cursor:pointer;position:relative;overflow:hidden}
+.sw-btn.compact{min-height:36px}
+.sw-btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:#03140b;box-shadow:0 10px 30px color-mix(in srgb,var(--accent) 24%,transparent)}
+.liquid:before,.liquid-card:before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;background:color-mix(in srgb,var(--accent) 18%,transparent);filter:blur(16px);left:-80px;top:-90px;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.liquid:hover:before,.liquid-card:hover:before{transform:translate(160px,80px) scale(1.5)}
+.liquid-card{position:relative;overflow:hidden}
+.sw-section{width:min(1180px,calc(100% - 48px));margin:auto}
