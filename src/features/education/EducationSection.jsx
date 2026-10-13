@@ -1,3 +1,4 @@
+import SectionHeading from "../../components/ui/SectionHeading";
 import { useState } from "react";
 import { Code2, Terminal, GraduationCap, BookOpen, CalendarDays, BarChart3 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,14 +24,10 @@ export default function EducationSection() {
           id="education"
           className="sw-section sw-block education-section"
         >
-          <motion.div {...reveal}>
-            <p className="eyebrow">04. EDUCATION</p>
-            <h2>My academic journey.</h2>
-            <p className="section-copy">
+          <SectionHeading eyebrow="04. EDUCATION" title="My academic journey.">
               Formal learning that built the foundation for my problem-solving
               and software engineering skills.
-            </p>
-          </motion.div>
+            </SectionHeading>
           <div className="education-layout">
             <div className="timeline education-timeline">
               {education.map((e, i) => (
