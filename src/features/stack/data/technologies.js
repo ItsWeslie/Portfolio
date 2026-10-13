@@ -1,3 +1,6 @@
+import { FaJava, FaReact, FaHtml5, FaCss3Alt, FaGitAlt, FaGithub } from "react-icons/fa";
+import { SiJavascript, SiSpringboot, SiMysql, SiTailwindcss } from "react-icons/si";
+
 export const stack = [
   { name: "JavaScript", Icon: SiJavascript, className: "tech-js" },
   { name: "React", Icon: FaReact, className: "tech-react" },
