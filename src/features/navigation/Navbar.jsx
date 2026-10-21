@@ -1,10 +1,13 @@
-import { Moon, Sun, Sparkles } from "lucide-react";
+import { Moon, Sun, Sparkles, Menu, X } from "lucide-react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import profile from "/src/assets/logo.png";
 import useTheme from "../../hooks/useTheme";
 
 export default function Navbar() {
   const [theme, setTheme] = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigationItems = ["Home", "About", "Projects", "Stack", "Education", "Certifications", "Contact"];
   return (
       <header className="sw-nav glass">
         <a className="sw-brand" href="#home">
@@ -14,15 +17,7 @@ export default function Navbar() {
           <b>Sam Weslie Prabhakaran</b>
         </a>
         <nav>
-          {[
-            "Home",
-            "About",
-            "Projects",
-            "Stack",
-            "Education",
-            "Certifications",
-            "Contact",
-          ].map((x) => (
+          {navigationItems.map((x) => (
             <a key={x} href={`#${x.toLowerCase()}`} className="font-semibold">
               {x}
             </a>
@@ -41,6 +36,16 @@ export default function Navbar() {
             <span>WesMind</span>
           </button>
           <button
+            className="sw-mobile-menu-toggle"
+            type="button"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="sw-mobile-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+          <button
             className="theme-toggle"
             aria-label="Toggle color theme"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -55,6 +60,22 @@ export default function Navbar() {
           <a className="sw-btn compact" href="/Sam_Resume.pdf" download>
             Resume
           </a>
+        </div>
+        <div
+          id="sw-mobile-menu"
+          className={`sw-mobile-menu glass ${menuOpen ? "is-open" : ""}`}
+          aria-hidden={!menuOpen}
+        >
+          {navigationItems.map((x) => (
+            <a
+              key={x}
+              href={`#${x.toLowerCase()}`}
+              tabIndex={menuOpen ? 0 : -1}
+              onClick={() => setMenuOpen(false)}
+            >
+              {x}
+            </a>
+          ))}
         </div>
       </header>
   );
