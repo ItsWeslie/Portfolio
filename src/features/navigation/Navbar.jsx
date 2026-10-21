@@ -36,16 +36,6 @@ export default function Navbar() {
             <span>WesMind</span>
           </button>
           <button
-            className="sw-mobile-menu-toggle"
-            type="button"
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={menuOpen}
-            aria-controls="sw-mobile-menu"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-          <button
             className="theme-toggle"
             aria-label="Toggle color theme"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -56,6 +46,16 @@ export default function Navbar() {
             >
               {theme === "dark" ? <Moon size={15} /> : <Sun size={15} />}
             </motion.span>
+          </button>
+          <button
+            className="sw-mobile-menu-toggle"
+            type="button"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="sw-mobile-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
           <a className="sw-btn compact" href="/Sam_Resume.pdf" download>
             Resume
