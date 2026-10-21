@@ -6,7 +6,7 @@ import { reveal } from "../shared/reveal";
 export default function AboutSection() {
   return (
         <section id="about" className="sw-section sw-block">
-          <SectionHeading eyebrow="01. ABOUT" title="Engineering with curiosity.">
+          <SectionHeading eyebrow="01. ABOUT" title="What I do and why.">
               I’m Sam Weslie Prabhakaran, a Software Engineer focused on turning
               ideas into real world solutions. I enjoy understanding how systems
               work, solving real world problems, and continuously expanding my

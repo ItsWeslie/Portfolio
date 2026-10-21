@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
         <section id="home" className="sw-hero sw-section">
           <motion.div className="hero-copy" {...reveal}>
-            <p className="eyebrow">BUILD · SOLVE · IMPROVE</p>
+            {/* <p className="eyebrow">BUILD · SOLVE · IMPROVE</p> */}
             <h1>
               Hi, I'm Sam Weslie
               <br />
