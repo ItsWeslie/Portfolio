@@ -38,7 +38,7 @@ export default function MissionLog2() {
     };
     window.addEventListener("mousemove", handleMove);
     return () => window.removeEventListener("mousemove", handleMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   const tiltX = useTransform(mouseY, [-30, 30], [10, -10]);
   const tiltY = useTransform(mouseX, [-30, 30], [-10, 10]);
