@@ -23,7 +23,15 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // Core ESLint doesn't count JSX tag references as variable usage.
+      // Ignore JSX component bindings and the common Framer Motion namespace.
+      'no-unused-vars': [
+        'error',
+        {
+          varsIgnorePattern: '^[A-Z_]|^(motion|AnimatePresence)$',
+          argsIgnorePattern: '^[A-Z_]',
+        },
+      ],
     },
   },
 ])

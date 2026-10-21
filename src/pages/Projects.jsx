@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 
 import education from '/src/assets/education2.jpg'
 import bus from '/src/assets/bus.jpg'
@@ -19,7 +18,7 @@ import { Button } from '@/components/ui/button';
 
 function Projects() {
 
-    const[project,setProjects] = useState([
+    const project = [
         {
            Name:'Employee Management System',
            Img : ems,
@@ -45,7 +44,7 @@ function Projects() {
           url:"https://github.com/ItsWeslie/AirLineTicketReservationSystem"
         }
         
-    ]);
+    ];
 
     function handleOnClick(url)
     {

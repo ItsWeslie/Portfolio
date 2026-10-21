@@ -60,4 +60,6 @@ function Button({
   );
 }
 
+// This utility export is intentionally colocated with Button for shadcn-style reuse.
+// eslint-disable-next-line react-refresh/only-export-components
 export { Button, buttonVariants }

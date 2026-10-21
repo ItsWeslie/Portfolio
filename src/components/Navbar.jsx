@@ -4,7 +4,6 @@ import logo from "/src/assets/logo.png";
 import { Menu, X } from "lucide-react";
 
 function Navbar({ showWesMind, setShowWesMind }) {
-  const [isHovered, setIsHovered] = useState(false);
   const [isLogoHovered, setIsLogoHovered] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -68,8 +67,6 @@ function Navbar({ showWesMind, setShowWesMind }) {
             <div className="relative flex flex-col items-center">
               <Button
                 onClick={() => setShowWesMind(!showWesMind)}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 className="w-18 h-7 xl:w-18 xl:h-8 rounded-xl bg-gradient-to-b 
                          from-[#531db9] via-[#452383] to-[#0a0f1c]  
                         text-white text-sm font-semibold shadow-[0_0_15px_rgba(255,215,0,0.6)] 
