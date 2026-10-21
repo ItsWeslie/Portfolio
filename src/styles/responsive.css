@@ -13,3 +13,11 @@
 @media(min-width:901px){
   .sw-nav .sw-mobile-menu-toggle,.sw-nav .sw-mobile-menu{display:none}
 }
+
+@media(max-width:620px){
+  .sw-nav .sw-nav-actions{gap:6px}
+  .sw-nav .wes-nav-button{width:36px;min-width:36px;padding:0;justify-content:center}
+  .sw-nav .wes-nav-button>span:last-child{display:none}
+  .sw-nav .theme-toggle{width:42px}
+  .sw-nav .sw-btn.compact{display:none}
+}
