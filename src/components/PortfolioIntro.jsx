@@ -3,14 +3,6 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { gsap } from "gsap";
 import "./portfolio-intro.css";
 
-
-const bootLines = [
-  "Mounting portfolio interface",
-  "Loading developer profile",
-  "Indexing selected projects",
-  "Preparing digital workspace",
-];
-
 export default function PortfolioIntro() {
   const prefersReducedMotion = useReducedMotion();
   const wavePathsRef = useRef([]);
@@ -19,15 +11,13 @@ export default function PortfolioIntro() {
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    if (!visible || prefersReducedMotion || wavePathsRef.current.length !== 2) {
+    if (!visible || phase < 5 || prefersReducedMotion || wavePathsRef.current.length !== 2) {
       return undefined;
     }
 
     const points = wavePointsRef.current;
     const paths = wavePathsRef.current;
     const pointCount = points[0].length;
-
-    // Both curtains begin above the viewport and leave in one consistent direction.
     points[0].fill(-14);
     points[1].fill(-24);
 
@@ -35,23 +25,18 @@ export default function PortfolioIntro() {
       paths.forEach((path, pathIndex) => {
         if (!path) return;
         const values = points[pathIndex];
-        const firstY = values[0];
-        let d = `M 0 ${firstY} C`;
-
+        let d = `M 0 ${values[0]} C`;
         for (let index = 0; index < pointCount - 1; index += 1) {
           const x = ((index + 1) / (pointCount - 1)) * 100;
           const controlX = x - 100 / (pointCount - 1) / 2;
           d += ` ${controlX} ${values[index]} ${controlX} ${values[index + 1]} ${x} ${values[index + 1]}`;
         }
-
-        // Close along the bottom edge: the wave always spans the full viewport.
         d += " L 100 100 L 0 100 Z";
         path.setAttribute("d", d);
       });
     };
 
     render();
-
     const timeline = gsap.timeline({ onUpdate: render });
     points.forEach((pathPoints, pathIndex) => {
       pathPoints.forEach((_, pointIndex) => {
@@ -66,29 +51,25 @@ export default function PortfolioIntro() {
         );
       });
     });
-
     return () => timeline.kill();
-  }, [visible, prefersReducedMotion]);
+  }, [visible, phase, prefersReducedMotion]);
 
   useEffect(() => {
     if (prefersReducedMotion) {
       setVisible(false);
       return undefined;
     }
-
     if (!visible) return undefined;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
     const timers = [
-      window.setTimeout(() => setPhase(1), 750),
-      window.setTimeout(() => setPhase(2), 2500),
-      window.setTimeout(() => setPhase(3), 4200),
-      window.setTimeout(() => setPhase(4), 6200),
-      window.setTimeout(() => {
-        setVisible(false);
-      }, 8000),
+      window.setTimeout(() => setPhase(1), 850),
+      window.setTimeout(() => setPhase(2), 1650),
+      window.setTimeout(() => setPhase(3), 2400),
+      window.setTimeout(() => setPhase(4), 3650),
+      window.setTimeout(() => setPhase(5), 5550),
+      window.setTimeout(() => setVisible(false), 7950),
     ];
 
     return () => {
@@ -97,9 +78,7 @@ export default function PortfolioIntro() {
     };
   }, [prefersReducedMotion, visible]);
 
-  const skipIntro = () => {
-    setVisible(false);
-  };
+  const skipIntro = () => setVisible(false);
 
   return (
     <AnimatePresence>
@@ -116,12 +95,12 @@ export default function PortfolioIntro() {
           <div className={`intro-atmosphere phase-${phase}`} aria-hidden="true">
             <motion.span
               className="intro-orbit intro-orbit-one"
-              animate={{ rotate: phase >= 2 ? 150 : 0, scale: phase >= 2 ? 1.18 : 0.8 }}
+              animate={{ rotate: phase >= 4 ? 150 : 0, scale: phase >= 4 ? 1.18 : 0.8 }}
               transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             />
             <motion.span
               className="intro-orbit intro-orbit-two"
-              animate={{ rotate: phase >= 2 ? -115 : 0, scale: phase >= 2 ? 1.05 : 0.72 }}
+              animate={{ rotate: phase >= 4 ? -115 : 0, scale: phase >= 4 ? 1.05 : 0.72 }}
               transition={{ duration: 1.25, ease: [0.22, 1, 0.36, 1] }}
             />
             <div className="intro-shape-overlays" aria-hidden="true">
@@ -163,79 +142,101 @@ export default function PortfolioIntro() {
 
           <div className="intro-content">
             <AnimatePresence mode="wait" initial={false}>
-              {phase <= 1 && (
+              {phase === 0 && (
                 <motion.section
-                  key="terminal"
-                  className="intro-terminal"
-                  initial={{ opacity: 0, y: 18, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -18, scale: 0.96, filter: "blur(8px)" }}
-                  transition={{ duration: 0.45 }}
+                  key="dots"
+                  className="intro-dots-scene"
+                  aria-label="Bouncing dots"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.86, filter: "blur(8px)" }}
+                  transition={{ duration: 0.35 }}
                 >
-                  <div className="intro-window-bar">
-                    <span /><span /><span />
-                    <b>sam@weslie: ~/portfolio</b>
-                  </div>
-                  <div className="intro-terminal-body">
-                    <p className="intro-terminal-kicker">INITIALIZING PERSONAL WORKSPACE</p>
-                    {bootLines.slice(0, phase === 0 ? 1 : 4).map((line, index) => (
-                      <motion.p
-                        className="intro-boot-line"
-                        key={line}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.13, duration: 0.25 }}
-                      >
-                        <span>$</span> {line}<b> [OK]</b>
-                      </motion.p>
-                    ))}
-                    <div className="intro-progress-row">
-                      <div className="intro-progress"><motion.span animate={{ width: phase === 0 ? "28%" : "100%" }} transition={{ duration: 0.65 }} /></div>
-                      <strong>{phase === 0 ? "28" : "100"}%</strong>
-                    </div>
-                  </div>
+                  {[0, 1, 2].map((dot) => (
+                    <motion.span
+                      className="intro-bouncing-dot"
+                      key={dot}
+                      animate={{ y: [0, -25, 0], scaleY: [1, 1.12, 0.88, 1] }}
+                      transition={{ duration: 0.62, delay: dot * 0.13, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  ))}
+                </motion.section>
+              )}
+
+              {phase === 1 && (
+                <motion.section
+                  key="eyes"
+                  className="intro-eyes-scene"
+                  aria-label="Playful cartoon eyes looking up"
+                  initial={{ opacity: 0, y: 12, scale: 0.82 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9, filter: "blur(7px)" }}
+                  transition={{ type: "spring", stiffness: 240, damping: 18 }}
+                >
+                  {[0, 1].map((eye) => (
+                    <motion.span
+                      className="intro-cartoon-eye"
+                      key={eye}
+                      animate={{ scaleY: [1, 1, 0.12, 1] }}
+                      transition={{ duration: 0.48, times: [0, 0.72, 0.84, 1], delay: eye * 0.04 }}
+                    >
+                      <motion.span
+                        className="intro-eye-pupil"
+                        animate={{ y: -10, x: eye === 0 ? 2 : -2 }}
+                        transition={{ duration: 0.42, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                      <span className="intro-eye-glint" />
+                    </motion.span>
+                  ))}
                 </motion.section>
               )}
 
               {phase === 2 && (
                 <motion.section
-                  key="morph"
-                  className="intro-morph-copy"
-                  initial={{ opacity: 0, scale: 0.72, filter: "blur(14px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, scale: 1.12, filter: "blur(10px)" }}
+                  key="hi"
+                  className="intro-hi-scene"
+                  initial={{ opacity: 0, y: 22, scale: 0.72, rotate: -5 }}
+                  animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, y: -12, scale: 1.08, filter: "blur(8px)" }}
+                  transition={{ type: "spring", stiffness: 220, damping: 17 }}
+                >
+                  <span className="intro-hi-sparkle" aria-hidden="true">✳</span>
+                  <h1>hi<span>!</span></h1>
+                  <span className="intro-hi-sparkle intro-hi-sparkle-two" aria-hidden="true">✳</span>
+                </motion.section>
+              )}
+
+              {phase === 3 && (
+                <motion.section
+                  key="name"
+                  className="intro-welcome"
+                  initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
                   transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="intro-eyebrow">SYSTEM READY · IDENTITY SYNCHRONIZED</span>
+                  <p className="intro-eyebrow">NICE TO MEET YOU</p>
+                  <h1>I'M WESLIE<span>.</span></h1>
+                  <p className="intro-role">SOFTWARE ENGINEER</p>
+                </motion.section>
+              )}
+
+              {phase >= 4 && (
+                <motion.section
+                  key="morph"
+                  className="intro-morph-copy"
+                  initial={{ opacity: 0, scale: 0.68, filter: "blur(16px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 1.12, filter: "blur(10px)" }}
+                  transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="intro-eyebrow">LET'S MAKE SOMETHING MATTER.</span>
                   <motion.div
                     className="intro-monogram"
                     layout
                     animate={{ rotate: [0, -8, 8, 0], scale: [0.8, 1.12, 1] }}
                     transition={{ duration: 0.85, ease: "easeInOut" }}
                   >W</motion.div>
-                </motion.section>
-              )}
-
-              {phase >= 3 && (
-                <motion.section
-                  key="welcome"
-                  className="intro-welcome"
-                  initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <p className="intro-eyebrow">HELLO, WORLD.</p>
-                  <h1>Sam Weslie <span>Prabhakaran</span></h1>
-                  <p className="intro-role">SOFTWARE ENGINEER</p>
-                  <motion.div
-                    className="intro-enter"
-                    initial={{ opacity: 0, y: 12, scale: 0.92 }}
-                    animate={{ opacity: phase >= 4 ? 1 : 0, y: phase >= 4 ? 0 : 12, scale: phase >= 4 ? 1 : 0.92 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    ENTERING DIGITAL SPACE <span aria-hidden="true">→</span>
-                  </motion.div>
                 </motion.section>
               )}
             </AnimatePresence>
@@ -246,7 +247,7 @@ export default function PortfolioIntro() {
             <span>CHENNAI, INDIA <b>© 2026</b></span>
           </div>
           <div className="intro-bottom-progress" aria-hidden="true">
-            <motion.span animate={{ width: `${Math.min(100, (phase + 1) * 20)}%` }} transition={{ duration: 0.35 }} />
+            <motion.span animate={{ width: `${Math.min(100, ((phase + 1) / 6) * 100)}%` }} transition={{ duration: 0.35 }} />
           </div>
         </motion.div>
       )}
