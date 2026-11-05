@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { gsap } from "gsap";
+import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 import "./portfolio-intro.css";
+
+gsap.registerPlugin(MorphSVGPlugin);
 
 const bootLines = [
   "Mounting portfolio interface",
@@ -11,8 +15,58 @@ const bootLines = [
 
 export default function PortfolioIntro() {
   const prefersReducedMotion = useReducedMotion();
+  const morphSvgRef = useRef(null);
+  const morphPathRef = useRef(null);
   const [visible, setVisible] = useState(true);
   const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    if (!visible || prefersReducedMotion || !morphPathRef.current || !morphSvgRef.current) {
+      return undefined;
+    }
+
+    const ctx = gsap.context(() => {
+      const morphTimeline = gsap.timeline({
+        repeat: -1,
+        defaults: { duration: 1.85, ease: "sine.inOut" },
+      });
+
+      morphTimeline
+        .to(morphPathRef.current, {
+          morphSVG: {
+            shape: "M300 24 C350 24 376 90 426 96 C488 104 552 154 532 220 C512 286 450 292 422 340 C390 394 316 406 264 370 C214 336 166 370 116 326 C60 276 88 208 116 164 C146 116 194 114 220 70 C240 38 268 24 300 24 Z",
+            type: "rotational",
+            smooth: true,
+          },
+        })
+        .to(morphPathRef.current, {
+          morphSVG: {
+            shape: "M300 38 C348 72 432 40 470 104 C510 170 466 202 500 258 C534 318 452 370 388 352 C330 336 320 402 250 378 C184 356 194 304 130 282 C64 258 82 178 138 148 C194 118 232 2 300 38 Z",
+            type: "rotational",
+            smooth: true,
+          },
+        })
+        .to(morphPathRef.current, {
+          morphSVG: {
+            shape: "M300 48 C370 34 442 78 486 132 C538 196 514 270 466 318 C416 370 344 390 274 368 C198 345 112 328 88 258 C63 185 116 112 180 77 C218 56 258 56 300 48 Z",
+            type: "rotational",
+            smooth: true,
+          },
+        });
+
+      gsap.to(morphSvgRef.current, {
+        rotation: 12,
+        scale: 1.08,
+        duration: 5.55,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        transformOrigin: "50% 50%",
+      });
+    }, morphSvgRef);
+
+    return () => ctx.revert();
+  }, [visible, prefersReducedMotion]);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -68,17 +122,27 @@ export default function PortfolioIntro() {
               animate={{ rotate: phase >= 2 ? -115 : 0, scale: phase >= 2 ? 1.05 : 0.72 }}
               transition={{ duration: 1.25, ease: [0.22, 1, 0.36, 1] }}
             />
-            <motion.span
-              className="intro-morph-shape"
-              animate={{
-                width: phase >= 2 ? "min(76vw, 760px)" : 92,
-                height: phase >= 2 ? "min(42vw, 380px)" : 92,
-                borderRadius: phase >= 2 ? "48% 52% 34% 66% / 58% 35% 65% 42%" : "28px",
-                rotate: phase >= 2 ? -14 : 45,
-                opacity: phase >= 2 ? 0.34 : 0.7,
-              }}
-              transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
-            />
+            <svg
+              ref={morphSvgRef}
+              className="intro-morph-svg"
+              viewBox="0 0 600 420"
+              role="presentation"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="intro-morph-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#35e99a" stopOpacity=".42" />
+                  <stop offset="52%" stopColor="#24b98e" stopOpacity=".22" />
+                  <stop offset="100%" stopColor="#398bd0" stopOpacity=".16" />
+                </linearGradient>
+              </defs>
+              <path
+                ref={morphPathRef}
+                className="intro-morph-path"
+                d="M300 48 C370 34 442 78 486 132 C538 196 514 270 466 318 C416 370 344 390 274 368 C198 345 112 328 88 258 C63 185 116 112 180 77 C218 56 258 56 300 48 Z"
+                fill="url(#intro-morph-gradient)"
+              />
+            </svg>
           </div>
 
           <div className="intro-topline">
