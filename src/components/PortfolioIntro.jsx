@@ -14,7 +14,7 @@ const bootLines = [
 export default function PortfolioIntro() {
   const prefersReducedMotion = useReducedMotion();
   const wavePathsRef = useRef([]);
-  const wavePointsRef = useRef([Array(10).fill(100), Array(10).fill(100)]);
+  const wavePointsRef = useRef([Array(10).fill(-14), Array(10).fill(-24)]);
   const [visible, setVisible] = useState(true);
   const [phase, setPhase] = useState(0);
 
@@ -26,27 +26,26 @@ export default function PortfolioIntro() {
     const points = wavePointsRef.current;
     const paths = wavePathsRef.current;
     const pointCount = points[0].length;
-    const pointDelay = 0.28;
-    const pathDelay = 0.2;
-    const isInitialReveal = phase === 0;
 
-    if (!isInitialReveal) {
-      points.forEach((pathPoints) => pathPoints.fill(0));
-    } else {
-      points.forEach((pathPoints) => pathPoints.fill(100));
-    }
+    // Both curtains begin above the viewport and leave in one consistent direction.
+    points[0].fill(-14);
+    points[1].fill(-24);
 
     const render = () => {
       paths.forEach((path, pathIndex) => {
         if (!path) return;
         const values = points[pathIndex];
-        let d = `M 0 ${values[0]} C`;
+        const firstY = values[0];
+        let d = `M 0 0 L 0 ${firstY} C`;
+
         for (let index = 0; index < pointCount - 1; index += 1) {
           const x = ((index + 1) / (pointCount - 1)) * 100;
           const controlX = x - 100 / (pointCount - 1) / 2;
           d += ` ${controlX} ${values[index]} ${controlX} ${values[index + 1]} ${x} ${values[index + 1]}`;
         }
-        d += " V 0 H 0";
+
+        // Close along the bottom edge: the wave always spans the full viewport.
+        d += " L 100 100 L 0 100 Z";
         path.setAttribute("d", d);
       });
     };
@@ -54,30 +53,22 @@ export default function PortfolioIntro() {
     render();
 
     const timeline = gsap.timeline({ onUpdate: render });
-    const animatePoints = (target, reverse = false) => {
-      points.forEach((pathPoints, pathIndex) => {
-        const layerIndex = reverse ? points.length - pathIndex - 1 : pathIndex;
-        for (let index = 0; index < pointCount; index += 1) {
-          const staggerIndex = reverse ? pointCount - index - 1 : index;
-          timeline.to(
-            pathPoints,
-            { [index]: target, duration: 0.82, ease: "power2.inOut" },
-            staggerIndex * pointDelay + layerIndex * pathDelay
-          );
-        }
+    points.forEach((pathPoints, pathIndex) => {
+      pathPoints.forEach((_, pointIndex) => {
+        timeline.to(
+          pathPoints,
+          {
+            [pointIndex]: 112 + pathIndex * 9,
+            duration: 0.72,
+            ease: "power3.inOut",
+          },
+          pointIndex * 0.045 + pathIndex * 0.12
+        );
       });
-    };
-
-    if (isInitialReveal) {
-      animatePoints(0, true);
-    } else {
-      animatePoints(100, true);
-      animatePoints(0, false);
-    }
+    });
 
     return () => timeline.kill();
-  }, [visible, prefersReducedMotion, phase]);
-
+  }, [visible, prefersReducedMotion]);
 
   useEffect(() => {
     if (prefersReducedMotion) {
