@@ -148,35 +148,12 @@ export default function PortfolioIntro() {
                   className="intro-dots-scene"
                   aria-label="Pulsing loading dots"
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate="pulse"
-                  variants={{
-                    pulse: {
-                      opacity: 1,
-                      scale: 1,
-                      transition: {
-                        duration: 0.35,
-                        staggerChildren: 0.2,
-                        staggerDirection: -1,
-                      },
-                    },
-                  }}
+                  animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.86, filter: "blur(8px)" }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
                 >
                   {[0, 1, 2].map((dot) => (
-                    <motion.span
-                      className="intro-bouncing-dot"
-                      key={dot}
-                      variants={{
-                        pulse: {
-                          scale: [1, 1.5, 1],
-                          transition: {
-                            duration: 1.2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          },
-                        },
-                      }}
-                    />
+                    <span className="intro-bouncing-dot" key={dot} />
                   ))}
                 </motion.section>
               )}
