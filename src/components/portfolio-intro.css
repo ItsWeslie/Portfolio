@@ -85,7 +85,8 @@
 .intro-atmosphere { position: absolute; z-index: 1; inset: 0; display: grid; place-items: center; pointer-events: none; }
 .intro-orbit { position: absolute; width: min(72vw, 680px); height: min(72vw, 680px); border: 1px solid rgba(70, 227, 170, .17); border-radius: 44% 56% 61% 39% / 42% 44% 56% 58%; box-shadow: 0 0 55px rgba(27, 200, 137, .045), inset 0 0 45px rgba(27, 200, 137, .035); }
 .intro-orbit-two { width: min(56vw, 520px); height: min(56vw, 520px); border-color: rgba(74, 176, 220, .2); }
-.intro-morph-shape { position: absolute; border: 1px solid rgba(77, 231, 179, .38); background: linear-gradient(135deg, rgba(28, 196, 135, .22), rgba(34, 105, 153, .1)); box-shadow: 0 0 90px rgba(26, 195, 133, .12), inset 0 0 50px rgba(60, 208, 166, .12); filter: blur(.2px); }
+.intro-morph-svg { position: absolute; width: min(82vw, 900px); height: auto; overflow: visible; filter: drop-shadow(0 0 44px rgba(26, 195, 133, .16)); will-change: transform; }
+.intro-morph-path { stroke: rgba(77, 231, 179, .46); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
 .intro-atmosphere.phase-2 .intro-orbit { border-color: rgba(69, 239, 160, .28); }
 .intro-morph-copy { text-align: center; }
 .intro-eyebrow { margin: 0 0 22px; color: #86bda0; font: 600 10px ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .28em; }
