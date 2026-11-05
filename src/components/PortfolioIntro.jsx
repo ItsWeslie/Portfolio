@@ -177,8 +177,11 @@ export default function PortfolioIntro() {
                     >
                       <motion.span
                         className="intro-eye-pupil"
-                        animate={{ y: -9, x: eye === 0 ? 2 : -2 }}
-                        transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        animate={{ x: [-10, 0, 10], y: -9 }}
+                        transition={{
+                          x: { duration: 1.35, delay: 0.35, ease: "easeInOut" },
+                          y: { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] },
+                        }}
                       />
                       <span className="intro-eye-glint" />
                     </motion.span>
