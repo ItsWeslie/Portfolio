@@ -59,10 +59,10 @@ export default function PortfolioIntro() {
           pathPoints,
           {
             [pointIndex]: 112 + pathIndex * 9,
-            duration: 0.72,
-            ease: "power3.inOut",
+            duration: 2.2,
+            ease: "power2.inOut",
           },
-          pointIndex * 0.045 + pathIndex * 0.12
+          pointIndex * 0.11 + pathIndex * 0.35
         );
       });
     });
