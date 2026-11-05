@@ -156,8 +156,8 @@ export default function PortfolioIntro() {
                     <motion.span
                       className="intro-bouncing-dot"
                       key={dot}
-                      animate={{ y: [0, -18, 0], scaleY: [1, 1.08, 0.94, 1] }}
-                      transition={{ duration: 1.12, delay: dot * 0.2, repeat: Infinity, ease: "easeInOut" }}
+                      animate={{ scale: [1, 1.5, 1] }}
+                      transition={{ duration: 1.2, delay: (2 - dot) * 0.2, repeat: Infinity, ease: "easeInOut" }}
                     />
                   ))}
                 </motion.section>
