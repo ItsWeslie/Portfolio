@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { gsap } from "gsap";
-import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 import "./portfolio-intro.css";
 
-gsap.registerPlugin(MorphSVGPlugin);
 
 const bootLines = [
   "Mounting portfolio interface",
@@ -15,58 +13,71 @@ const bootLines = [
 
 export default function PortfolioIntro() {
   const prefersReducedMotion = useReducedMotion();
-  const morphSvgRef = useRef(null);
-  const morphPathRef = useRef(null);
+  const wavePathsRef = useRef([]);
+  const wavePointsRef = useRef([Array(10).fill(100), Array(10).fill(100)]);
   const [visible, setVisible] = useState(true);
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    if (!visible || prefersReducedMotion || !morphPathRef.current || !morphSvgRef.current) {
+    if (!visible || prefersReducedMotion || wavePathsRef.current.length !== 2) {
       return undefined;
     }
 
-    const ctx = gsap.context(() => {
-      const morphTimeline = gsap.timeline({
-        repeat: -1,
-        defaults: { duration: 1.85, ease: "sine.inOut" },
+    const points = wavePointsRef.current;
+    const paths = wavePathsRef.current;
+    const pointCount = points[0].length;
+    const pointDelay = 0.28;
+    const pathDelay = 0.2;
+    const isInitialReveal = phase === 0;
+
+    if (!isInitialReveal) {
+      points.forEach((pathPoints) => pathPoints.fill(0));
+    } else {
+      points.forEach((pathPoints) => pathPoints.fill(100));
+    }
+
+    const render = () => {
+      paths.forEach((path, pathIndex) => {
+        if (!path) return;
+        const values = points[pathIndex];
+        let d = `M 0 ${values[0]} C`;
+        for (let index = 0; index < pointCount - 1; index += 1) {
+          const x = ((index + 1) / (pointCount - 1)) * 100;
+          const controlX = x - 100 / (pointCount - 1) / 2;
+          d += ` ${controlX} ${values[index]} ${controlX} ${values[index + 1]} ${x} ${values[index + 1]}`;
+        }
+        d += " V 0 H 0";
+        path.setAttribute("d", d);
       });
+    };
 
-      morphTimeline
-        .to(morphPathRef.current, {
-          morphSVG: {
-            shape: "M300 24 C350 24 376 90 426 96 C488 104 552 154 532 220 C512 286 450 292 422 340 C390 394 316 406 264 370 C214 336 166 370 116 326 C60 276 88 208 116 164 C146 116 194 114 220 70 C240 38 268 24 300 24 Z",
-            type: "rotational",
-            smooth: true,
-          },
-        })
-        .to(morphPathRef.current, {
-          morphSVG: {
-            shape: "M300 38 C348 72 432 40 470 104 C510 170 466 202 500 258 C534 318 452 370 388 352 C330 336 320 402 250 378 C184 356 194 304 130 282 C64 258 82 178 138 148 C194 118 232 2 300 38 Z",
-            type: "rotational",
-            smooth: true,
-          },
-        })
-        .to(morphPathRef.current, {
-          morphSVG: {
-            shape: "M300 48 C370 34 442 78 486 132 C538 196 514 270 466 318 C416 370 344 390 274 368 C198 345 112 328 88 258 C63 185 116 112 180 77 C218 56 258 56 300 48 Z",
-            type: "rotational",
-            smooth: true,
-          },
-        });
+    render();
 
-      gsap.to(morphSvgRef.current, {
-        rotation: 12,
-        scale: 1.08,
-        duration: 5.55,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        transformOrigin: "50% 50%",
+    const timeline = gsap.timeline({ onUpdate: render });
+    const animatePoints = (target, reverse = false) => {
+      points.forEach((pathPoints, pathIndex) => {
+        const layerIndex = reverse ? points.length - pathIndex - 1 : pathIndex;
+        for (let index = 0; index < pointCount; index += 1) {
+          const staggerIndex = reverse ? pointCount - index - 1 : index;
+          timeline.to(
+            pathPoints,
+            { [index]: target, duration: 0.82, ease: "power2.inOut" },
+            staggerIndex * pointDelay + layerIndex * pathDelay
+          );
+        }
       });
-    }, morphSvgRef);
+    };
 
-    return () => ctx.revert();
-  }, [visible, prefersReducedMotion]);
+    if (isInitialReveal) {
+      animatePoints(0, true);
+    } else {
+      animatePoints(100, true);
+      animatePoints(0, false);
+    }
+
+    return () => timeline.kill();
+  }, [visible, prefersReducedMotion, phase]);
+
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -122,27 +133,32 @@ export default function PortfolioIntro() {
               animate={{ rotate: phase >= 2 ? -115 : 0, scale: phase >= 2 ? 1.05 : 0.72 }}
               transition={{ duration: 1.25, ease: [0.22, 1, 0.36, 1] }}
             />
-            <svg
-              ref={morphSvgRef}
-              className="intro-morph-svg"
-              viewBox="0 0 600 420"
-              role="presentation"
-              aria-hidden="true"
-            >
-              <defs>
-                <linearGradient id="intro-morph-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#35e99a" stopOpacity=".42" />
-                  <stop offset="52%" stopColor="#24b98e" stopOpacity=".22" />
-                  <stop offset="100%" stopColor="#398bd0" stopOpacity=".16" />
-                </linearGradient>
-              </defs>
-              <path
-                ref={morphPathRef}
-                className="intro-morph-path"
-                d="M300 48 C370 34 442 78 486 132 C538 196 514 270 466 318 C416 370 344 390 274 368 C198 345 112 328 88 258 C63 185 116 112 180 77 C218 56 258 56 300 48 Z"
-                fill="url(#intro-morph-gradient)"
-              />
-            </svg>
+            <div className="intro-shape-overlays" aria-hidden="true">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="intro-wave-back" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#0c5b40" />
+                    <stop offset="100%" stopColor="#123d36" />
+                  </linearGradient>
+                  <linearGradient id="intro-wave-front" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#45efa0" />
+                    <stop offset="100%" stopColor="#087f69" />
+                  </linearGradient>
+                </defs>
+                <path
+                  ref={(node) => { wavePathsRef.current[0] = node; }}
+                  className="intro-shape-overlay intro-shape-overlay-back"
+                  fill="url(#intro-wave-back)"
+                  d="M 0 100 C 5 100 5 100 11 100 16 100 16 100 22 100 27 100 27 100 33 100 38 100 38 100 44 100 50 100 50 100 56 100 61 100 61 100 67 100 72 100 72 100 78 100 83 100 83 100 89 100 94 100 94 100 100 100 V 0 H 0"
+                />
+                <path
+                  ref={(node) => { wavePathsRef.current[1] = node; }}
+                  className="intro-shape-overlay intro-shape-overlay-front"
+                  fill="url(#intro-wave-front)"
+                  d="M 0 100 C 5 100 5 100 11 100 16 100 16 100 22 100 27 100 27 100 33 100 38 100 38 100 44 100 50 100 50 100 56 100 61 100 61 100 67 100 72 100 72 100 78 100 83 100 83 100 89 100 94 100 94 100 100 100 V 0 H 0"
+                />
+              </svg>
+            </div>
           </div>
 
           <div className="intro-topline">
