@@ -1,7 +1,7 @@
 .portfolio-intro {
   --intro-ink: #eaf8f0;
   --intro-muted: #91a99a;
-  --intro-green: #45efa0;
+  --intro-green: #000000;
   --intro-cyan: #55d9d0;
   position: fixed;
   z-index: 99999;
