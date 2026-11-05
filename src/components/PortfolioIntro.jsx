@@ -65,11 +65,11 @@ export default function PortfolioIntro() {
     document.body.style.overflow = "hidden";
     const timers = [
       window.setTimeout(() => setPhase(1), 2000),
-      window.setTimeout(() => setPhase(2), 3900),
-      window.setTimeout(() => setPhase(3), 5600),
-      window.setTimeout(() => setPhase(4), 8000),
-      window.setTimeout(() => setPhase(5), 9900),
-      window.setTimeout(() => setVisible(false), 14000),
+      window.setTimeout(() => setPhase(2), 4700),
+      window.setTimeout(() => setPhase(3), 6400),
+      window.setTimeout(() => setPhase(4), 8800),
+      window.setTimeout(() => setPhase(5), 10700),
+      window.setTimeout(() => setVisible(false), 14800),
     ];
 
     return () => {
@@ -177,10 +177,10 @@ export default function PortfolioIntro() {
                     >
                       <motion.span
                         className="intro-eye-pupil"
-                        animate={{ x: [-10, 0, 10], y: -9 }}
+                        animate={{ x: [-12, 12, 0], y: [0, 0, -11] }}
                         transition={{
-                          x: { duration: 1.35, delay: 0.35, ease: "easeInOut" },
-                          y: { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] },
+                          x: { duration: 1.35, delay: 0.2, ease: "easeInOut" },
+                          y: { duration: 0.65, delay: 1.55, ease: [0.22, 1, 0.36, 1] },
                         }}
                       />
                       <span className="intro-eye-glint" />
