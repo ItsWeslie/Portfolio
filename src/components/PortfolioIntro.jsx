@@ -64,12 +64,12 @@ export default function PortfolioIntro() {
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const timers = [
-      window.setTimeout(() => setPhase(1), 850),
-      window.setTimeout(() => setPhase(2), 1650),
-      window.setTimeout(() => setPhase(3), 2400),
-      window.setTimeout(() => setPhase(4), 3650),
-      window.setTimeout(() => setPhase(5), 5550),
-      window.setTimeout(() => setVisible(false), 7950),
+      window.setTimeout(() => setPhase(1), 2000),
+      window.setTimeout(() => setPhase(2), 3900),
+      window.setTimeout(() => setPhase(3), 5600),
+      window.setTimeout(() => setPhase(4), 8000),
+      window.setTimeout(() => setPhase(5), 9900),
+      window.setTimeout(() => setVisible(false), 14000),
     ];
 
     return () => {
@@ -156,8 +156,8 @@ export default function PortfolioIntro() {
                     <motion.span
                       className="intro-bouncing-dot"
                       key={dot}
-                      animate={{ y: [0, -25, 0], scaleY: [1, 1.12, 0.88, 1] }}
-                      transition={{ duration: 0.62, delay: dot * 0.13, repeat: Infinity, ease: "easeInOut" }}
+                      animate={{ y: [0, -18, 0], scaleY: [1, 1.08, 0.94, 1] }}
+                      transition={{ duration: 1.12, delay: dot * 0.2, repeat: Infinity, ease: "easeInOut" }}
                     />
                   ))}
                 </motion.section>
@@ -171,19 +171,19 @@ export default function PortfolioIntro() {
                   initial={{ opacity: 0, y: 12, scale: 0.82 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9, filter: "blur(7px)" }}
-                  transition={{ type: "spring", stiffness: 240, damping: 18 }}
+                  transition={{ type: "spring", stiffness: 115, damping: 20, duration: 0.95 }}
                 >
                   {[0, 1].map((eye) => (
                     <motion.span
                       className="intro-cartoon-eye"
                       key={eye}
-                      animate={{ scaleY: [1, 1, 0.12, 1] }}
-                      transition={{ duration: 0.48, times: [0, 0.72, 0.84, 1], delay: eye * 0.04 }}
+                      animate={{ scaleY: [1, 1, 0.16, 1] }}
+                      transition={{ duration: 0.85, times: [0, 0.72, 0.84, 1], delay: eye * 0.1 }}
                     >
                       <motion.span
                         className="intro-eye-pupil"
-                        animate={{ y: -10, x: eye === 0 ? 2 : -2 }}
-                        transition={{ duration: 0.42, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                        animate={{ y: -9, x: eye === 0 ? 2 : -2 }}
+                        transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
                       />
                       <span className="intro-eye-glint" />
                     </motion.span>
@@ -198,7 +198,7 @@ export default function PortfolioIntro() {
                   initial={{ opacity: 0, y: 22, scale: 0.72, rotate: -5 }}
                   animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
                   exit={{ opacity: 0, y: -12, scale: 1.08, filter: "blur(8px)" }}
-                  transition={{ type: "spring", stiffness: 220, damping: 17 }}
+                  transition={{ type: "spring", stiffness: 105, damping: 19, duration: 1.05 }}
                 >
                   <span className="intro-hi-sparkle" aria-hidden="true">✳</span>
                   <h1>hi<span>!</span></h1>
@@ -213,7 +213,7 @@ export default function PortfolioIntro() {
                   initial={{ opacity: 0, y: 28, filter: "blur(12px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
-                  transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <p className="intro-eyebrow">NICE TO MEET YOU</p>
                   <h1>I'M WESLIE<span>.</span></h1>
@@ -228,14 +228,14 @@ export default function PortfolioIntro() {
                   initial={{ opacity: 0, scale: 0.68, filter: "blur(16px)" }}
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                   exit={{ opacity: 0, scale: 1.12, filter: "blur(10px)" }}
-                  transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <span className="intro-eyebrow">LET'S MAKE SOMETHING MATTER.</span>
                   <motion.div
                     className="intro-monogram"
                     layout
                     animate={{ rotate: [0, -8, 8, 0], scale: [0.8, 1.12, 1] }}
-                    transition={{ duration: 0.85, ease: "easeInOut" }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
                   >W</motion.div>
                 </motion.section>
               )}
