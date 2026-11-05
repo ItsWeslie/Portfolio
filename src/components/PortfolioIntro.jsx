@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import "./portfolio-intro.css";
 
-const SESSION_KEY = "weslie-os-intro-seen";
-
 const bootLines = [
   "Mounting portfolio interface",
   "Loading developer profile",
@@ -11,31 +9,14 @@ const bootLines = [
   "Preparing digital workspace",
 ];
 
-function wasSeenThisSession() {
-  try {
-    return window.sessionStorage.getItem(SESSION_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
-function markSeenThisSession() {
-  try {
-    window.sessionStorage.setItem(SESSION_KEY, "1");
-  } catch {
-    // The intro still works when session storage is unavailable.
-  }
-}
-
 export default function PortfolioIntro() {
   const prefersReducedMotion = useReducedMotion();
-  const [visible, setVisible] = useState(() => !wasSeenThisSession());
+  const [visible, setVisible] = useState(true);
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
     if (prefersReducedMotion) {
       setVisible(false);
-      markSeenThisSession();
       return undefined;
     }
 
@@ -50,7 +31,6 @@ export default function PortfolioIntro() {
       window.setTimeout(() => setPhase(3), 4200),
       window.setTimeout(() => setPhase(4), 6200),
       window.setTimeout(() => {
-        markSeenThisSession();
         setVisible(false);
       }, 8000),
     ];
@@ -62,7 +42,6 @@ export default function PortfolioIntro() {
   }, [prefersReducedMotion, visible]);
 
   const skipIntro = () => {
-    markSeenThisSession();
     setVisible(false);
   };
 
