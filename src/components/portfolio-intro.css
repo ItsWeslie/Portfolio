@@ -10,17 +10,14 @@
   place-items: center;
   overflow: hidden;
   color: var(--intro-ink);
-  background:
-    radial-gradient(ellipse at 50% 48%, rgba(16, 95, 62, .22), transparent 48%),
-    radial-gradient(ellipse at 82% 16%, rgba(18, 123, 112, .12), transparent 34%),
-    #050b08;
+  background: #000;
   font-family: inherit;
   isolation: isolate;
 }
 .portfolio-intro-grid {
   position: absolute;
   inset: 0;
-  opacity: .36;
+  opacity: .12;
   background-image: linear-gradient(rgba(75, 235, 158, .055) 1px, transparent 1px), linear-gradient(90deg, rgba(75, 235, 158, .055) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, #000 15%, transparent 78%);
