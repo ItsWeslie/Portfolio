@@ -45,14 +45,14 @@ export default function PortfolioIntro() {
     document.body.style.overflow = "hidden";
 
     const timers = [
-      window.setTimeout(() => setPhase(1), 450),
-      window.setTimeout(() => setPhase(2), 1450),
-      window.setTimeout(() => setPhase(3), 2350),
-      window.setTimeout(() => setPhase(4), 3550),
+      window.setTimeout(() => setPhase(1), 750),
+      window.setTimeout(() => setPhase(2), 2500),
+      window.setTimeout(() => setPhase(3), 4200),
+      window.setTimeout(() => setPhase(4), 6200),
       window.setTimeout(() => {
         markSeenThisSession();
         setVisible(false);
-      }, 4850),
+      }, 8000),
     ];
 
     return () => {
