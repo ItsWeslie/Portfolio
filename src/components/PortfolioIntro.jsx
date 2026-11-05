@@ -36,7 +36,7 @@ export default function PortfolioIntro() {
         if (!path) return;
         const values = points[pathIndex];
         const firstY = values[0];
-        let d = `M 0 0 L 0 ${firstY} C`;
+        let d = `M 0 ${firstY} C`;
 
         for (let index = 0; index < pointCount - 1; index += 1) {
           const x = ((index + 1) / (pointCount - 1)) * 100;
