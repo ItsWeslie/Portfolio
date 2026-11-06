@@ -126,3 +126,8 @@
 .shape-morph-accent {
   fill: var(--accent, #087a4c);
 }
+
+
+.portfolio-loader-reveal {
+  background: transparent;
+}
