@@ -44,7 +44,7 @@
   align-items: center;
   justify-content: center;
   min-height: 1em;
-  color: var(--foreground, #fff);
+  color: var(--text, #0b1712);
   font-family: inherit;
   font-size: clamp(3.5rem, 12vw, 6rem);
   font-weight: 600;
