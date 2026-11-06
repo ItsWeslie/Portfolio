@@ -16,7 +16,9 @@ import IntroAnimation from "./components/IntroAnimation";
 function App() {
   const [wesMindOpen, setWesMindOpen] = useState(false);
   const [introComplete, setIntroComplete] = useState(false);
+  const [entryBackdropVisible, setEntryBackdropVisible] = useState(false);
   const portfolioRef = useRef(null);
+  const backdropRef = useRef(null);
 
   useEffect(() => {
     const open = () => setWesMindOpen(true);
@@ -35,36 +37,64 @@ function App() {
         scale: 1,
         filter: "blur(0px)",
       });
+      setEntryBackdropVisible(false);
       return undefined;
     }
 
     const context = gsap.context(() => {
-      gsap.fromTo(
-        portfolioRef.current,
-        {
-          visibility: "visible",
-          clipPath: "circle(0% at 50% 48%)",
-          scale: 0.94,
-          filter: "blur(18px)",
-          transformOrigin: "50% 50%",
-        },
-        {
-          clipPath: "circle(150% at 50% 48%)",
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1.45,
-          ease: "power4.inOut",
-          clearProps: "filter,transform",
-        }
-      );
+      const timeline = gsap.timeline({
+        onComplete: () => setEntryBackdropVisible(false),
+      });
+
+      gsap.set(portfolioRef.current, {
+        visibility: "visible",
+        clipPath: "circle(0% at 50% 48%)",
+        scale: 0.94,
+        filter: "blur(18px)",
+        transformOrigin: "50% 50%",
+      });
+
+      timeline.to(portfolioRef.current, {
+        clipPath: "circle(150% at 50% 48%)",
+        scale: 1,
+        filter: "blur(0px)",
+        duration: 1.45,
+        ease: "power4.inOut",
+        clearProps: "filter,transform",
+      });
+      if (backdropRef.current) {
+        timeline.to(backdropRef.current, {
+          opacity: 0,
+          duration: 0.55,
+          ease: "power2.out",
+        }, 0.55);
+      }
     }, portfolioRef);
 
     return () => context.revert();
   }, [introComplete]);
 
+  const handleIntroComplete = () => {
+    setEntryBackdropVisible(true);
+    setIntroComplete(true);
+  };
+
   return (
     <>
-      <IntroAnimation onComplete={() => setIntroComplete(true)} />
+      <IntroAnimation onComplete={handleIntroComplete} />
+      {entryBackdropVisible && (
+        <div
+          ref={backdropRef}
+          aria-hidden="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99998,
+            background: "#080a09",
+            pointerEvents: "none",
+          }}
+        />
+      )}
       <div
         ref={portfolioRef}
         className="portfolio-entry"
