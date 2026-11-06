@@ -24,8 +24,8 @@
   align-items: center;
   justify-content: center;
   gap: 22px;
-  color: var(--foreground, #fff);
-  background: var(--background, #09090b);
+  color: var(--text, #0b1712);
+  background: var(--bg, #f5f8f6);
   font-family: inherit;
 }
 
@@ -71,12 +71,10 @@
 
 .welcome-track {
   position: relative;
-  left: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: max-content;
-  transform: translateX(-50%);
   white-space: nowrap;
   font-size: clamp(2.4rem, 8vw, 6.5rem);
   font-weight: 650;
