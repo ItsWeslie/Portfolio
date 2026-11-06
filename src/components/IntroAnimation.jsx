@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import "../intro-animation.css";
 
-export default function IntroAnimation() {
+export default function IntroAnimation({ onComplete }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     if (!visible) return undefined;
 
-    const finish = () => setVisible(false);
+    const finish = () => {
+      setVisible(false);
+      onComplete?.();
+    };
 
     try {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -20,11 +23,14 @@ export default function IntroAnimation() {
 
     const timeout = window.setTimeout(finish, 4700);
     return () => window.clearTimeout(timeout);
-  }, [visible]);
+  }, [visible, onComplete]);
 
   if (!visible) return null;
 
-  const skip = () => setVisible(false);
+  const skip = () => {
+    setVisible(false);
+    onComplete?.();
+  };
 
   return (
     <div className="cinematic-intro" role="status" aria-label="Introducing Sam Weslie Prabhakaran">
