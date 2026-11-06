@@ -16,11 +16,16 @@ import DevelopmentTicker from "./components/DevelopmentTicker";
 function App() {
   const [wesMindOpen,setWesMindOpen]=useState(false);
   const [isLoading,setIsLoading]=useState(true);
-  useEffect(()=>{const timer=window.setTimeout(()=>setIsLoading(false),2000);return()=>window.clearTimeout(timer)},[]);
+  const [showGreeting,setShowGreeting]=useState(false);
+  useEffect(()=>{const greetingTimer=window.setTimeout(()=>setShowGreeting(true),2000);const finishTimer=window.setTimeout(()=>setIsLoading(false),4700);return()=>{window.clearTimeout(greetingTimer);window.clearTimeout(finishTimer)}},[]);
   useEffect(()=>{const open=()=>setWesMindOpen(true);window.addEventListener("open-wesmind",open);return()=>window.removeEventListener("open-wesmind",open)},[]);
   return <>
     <AnimatePresence>
-      {isLoading && <motion.div className="portfolio-loader" initial={{opacity:1}} exit={{opacity:0}} transition={{duration:0.45}}><LoadingThreeDotsJumping /><span className="portfolio-loader-label">Preparing your experience</span></motion.div>}
+      {isLoading && <motion.div className="portfolio-loader" initial={{opacity:1}} exit={{opacity:0}} transition={{duration:0.45}}>
+        {!showGreeting ? <><LoadingThreeDotsJumping /><span className="portfolio-loader-label">Preparing your experience</span></> : <motion.div className="portfolio-greeting" aria-label="hi...">
+          {Array.from("hi...").map((character,index)=><motion.span key={`${character}-${index}`} initial={{opacity:0,y:18,filter:"blur(8px)"}} animate={{opacity:1,y:0,filter:"blur(0px)"}} transition={{duration:0.75,delay:index*0.42,ease:[0.22,1,0.36,1]}}>{character}</motion.span>)}
+        </motion.div>}
+      </motion.div>}
     </AnimatePresence>
     <Toaster position="bottom-right" richColors />
     <DevelopmentTicker />
