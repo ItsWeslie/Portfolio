@@ -36,7 +36,7 @@ export default function LoadingThreeDotsJumping() {
           width: 14px;
           height: 14px;
           border-radius: 50%;
-          background: var(--hue-1, currentColor);
+          background: var(--accent, #087a4c);
           will-change: transform;
         }
         .portfolio-loader {
@@ -50,9 +50,23 @@ export default function LoadingThreeDotsJumping() {
           gap: 22px;
           color: var(--foreground, #fff);
           background: var(--background, #09090b);
+          font-family: inherit;
         }
+        .portfolio-greeting {
+          display: flex;
+          align-items: center;
+          font-family: inherit;
+          font-size: clamp(3.5rem, 12vw, 6rem);
+          font-weight: 600;
+          line-height: 1;
+          letter-spacing: 0.04em;
+        }
+        .portfolio-greeting span { display: inline-block; }
         .portfolio-loader-label {
-          font: 500 12px/1.4 inherit;
+          font-family: inherit;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.4;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           opacity: 0.65;

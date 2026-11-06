@@ -1,0 +1,133 @@
+
+
+/* Character-by-character loader greeting */
+.portfolio-greeting {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+.portfolio-greeting span {
+  display: inline-block;
+}
+
+/* Keep the overlay styles global so they remain active after the dots unmount. */
+.portfolio-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  color: var(--text, #0b1712);
+  background: var(--bg, #f5f8f6);
+  font-family: inherit;
+}
+
+.portfolio-loader-label {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.portfolio-greeting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1em;
+  color: var(--text, #0b1712);
+  font-family: inherit;
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.portfolio-greeting span {
+  display: inline-block;
+}
+
+
+/* GSAP horizontal character reveal for the welcome screen */
+.welcome-reveal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 1.4em;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.welcome-track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  white-space: nowrap;
+  font-size: clamp(2.4rem, 8vw, 6.5rem);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+}
+
+.welcome-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.welcome-line-primary {
+  color: var(--text, #0b1712);
+}
+
+.welcome-line-accent {
+  color: var(--accent, #087a4c);
+}
+
+.welcome-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+@media (max-width: 480px) {
+  .welcome-track {
+    font-size: clamp(2.15rem, 10vw, 3.2rem);
+  }
+}
+
+
+/* Layered SVG shape morph that uncovers the portfolio after the welcome intro. */
+.shape-morph-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.shape-morph-base {
+  fill: var(--bg, #f5f8f6);
+}
+
+.shape-morph-accent {
+  fill: var(--accent, #087a4c);
+}
+
+
+.portfolio-loader-reveal {
+  background: transparent;
+}
