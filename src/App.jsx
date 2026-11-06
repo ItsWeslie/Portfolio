@@ -5,6 +5,8 @@ import "./about-avatar.css";
 import "./project-screenshots.css";
 import "./apple-terminal.css";
 import { Toaster } from "sonner";
+import { AnimatePresence, motion } from "motion/react";
+import LoadingThreeDotsJumping from "./components/LoadingThreeDotsJumping";
 import SoftwarePortfolio from "./pages/SoftwarePortfolio";
 import AboutAvatar from "./components/AboutAvatar";
 import ProjectExplorerMount from "./components/ProjectExplorerMount";
@@ -13,8 +15,13 @@ import DevelopmentTicker from "./components/DevelopmentTicker";
 
 function App() {
   const [wesMindOpen,setWesMindOpen]=useState(false);
+  const [isLoading,setIsLoading]=useState(true);
+  useEffect(()=>{const timer=window.setTimeout(()=>setIsLoading(false),1600);return()=>window.clearTimeout(timer)},[]);
   useEffect(()=>{const open=()=>setWesMindOpen(true);window.addEventListener("open-wesmind",open);return()=>window.removeEventListener("open-wesmind",open)},[]);
   return <>
+    <AnimatePresence>
+      {isLoading && <motion.div className="portfolio-loader" initial={{opacity:1}} exit={{opacity:0}} transition={{duration:0.45}}><LoadingThreeDotsJumping /><span className="portfolio-loader-label">Preparing your experience</span></motion.div>}
+    </AnimatePresence>
     <Toaster position="bottom-right" richColors />
     <DevelopmentTicker />
     <SoftwarePortfolio />
