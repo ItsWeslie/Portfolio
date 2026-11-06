@@ -36,7 +36,7 @@ export default function LoadingThreeDotsJumping() {
           width: 14px;
           height: 14px;
           border-radius: 50%;
-          background: var(--hue-1, currentColor);
+          background: var(--accent, #087a4c);
           will-change: transform;
         }
         .portfolio-loader {
