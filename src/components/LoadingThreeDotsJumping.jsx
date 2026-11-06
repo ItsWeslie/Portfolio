@@ -50,9 +50,13 @@ export default function LoadingThreeDotsJumping() {
           gap: 22px;
           color: var(--foreground, #fff);
           background: var(--background, #09090b);
+          font-family: inherit;
         }
         .portfolio-loader-label {
-          font: 500 12px/1.4 inherit;
+          font-family: inherit;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.4;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           opacity: 0.65;
