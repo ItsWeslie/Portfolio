@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./intro-animation.css";
+import "../intro-animation.css";
 
 const INTRO_KEY = "sam-portfolio-intro-seen";
 
