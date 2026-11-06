@@ -1,28 +1,13 @@
 import { useEffect, useState } from "react";
 import "../intro-animation.css";
 
-const INTRO_KEY = "sam-portfolio-intro-seen";
-
 export default function IntroAnimation() {
-  const [visible, setVisible] = useState(() => {
-    try {
-      return !sessionStorage.getItem(INTRO_KEY);
-    } catch {
-      return true;
-    }
-  });
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     if (!visible) return undefined;
 
-    const finish = () => {
-      try {
-        sessionStorage.setItem(INTRO_KEY, "1");
-      } catch {
-        // The animation still works when storage is unavailable.
-      }
-      setVisible(false);
-    };
+    const finish = () => setVisible(false);
 
     try {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -39,14 +24,7 @@ export default function IntroAnimation() {
 
   if (!visible) return null;
 
-  const skip = () => {
-    try {
-      sessionStorage.setItem(INTRO_KEY, "1");
-    } catch {
-      // Ignore storage restrictions.
-    }
-    setVisible(false);
-  };
+  const skip = () => setVisible(false);
 
   return (
     <div className="cinematic-intro" role="status" aria-label="Introducing Sam Weslie Prabhakaran">
