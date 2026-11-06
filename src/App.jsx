@@ -16,7 +16,7 @@ import DevelopmentTicker from "./components/DevelopmentTicker";
 function App() {
   const [wesMindOpen,setWesMindOpen]=useState(false);
   const [isLoading,setIsLoading]=useState(true);
-  useEffect(()=>{const timer=window.setTimeout(()=>setIsLoading(false),1600);return()=>window.clearTimeout(timer)},[]);
+  useEffect(()=>{const timer=window.setTimeout(()=>setIsLoading(false),2000);return()=>window.clearTimeout(timer)},[]);
   useEffect(()=>{const open=()=>setWesMindOpen(true);window.addEventListener("open-wesmind",open);return()=>window.removeEventListener("open-wesmind",open)},[]);
   return <>
     <AnimatePresence>
