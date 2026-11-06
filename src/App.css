@@ -105,3 +105,24 @@
     font-size: clamp(2.15rem, 10vw, 3.2rem);
   }
 }
+
+
+/* Layered SVG shape morph that uncovers the portfolio after the welcome intro. */
+.shape-morph-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.shape-morph-base {
+  fill: var(--bg, #f5f8f6);
+}
+
+.shape-morph-accent {
+  fill: var(--accent, #087a4c);
+}
