@@ -55,3 +55,55 @@
 .portfolio-greeting span {
   display: inline-block;
 }
+
+
+/* GSAP horizontal character reveal for the welcome screen */
+.welcome-reveal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 1.4em;
+  overflow: hidden;
+  font-family: inherit;
+}
+
+.welcome-track {
+  position: relative;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: clamp(2.4rem, 8vw, 6.5rem);
+  font-weight: 650;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+}
+
+.welcome-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.welcome-line-primary {
+  color: var(--text, #0b1712);
+}
+
+.welcome-line-accent {
+  color: var(--accent, #087a4c);
+}
+
+.welcome-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+@media (max-width: 480px) {
+  .welcome-track {
+    font-size: clamp(2.15rem, 10vw, 3.2rem);
+  }
+}
