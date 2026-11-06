@@ -52,6 +52,16 @@ export default function LoadingThreeDotsJumping() {
           background: var(--background, #09090b);
           font-family: inherit;
         }
+        .portfolio-greeting {
+          display: flex;
+          align-items: center;
+          font-family: inherit;
+          font-size: clamp(3.5rem, 12vw, 6rem);
+          font-weight: 600;
+          line-height: 1;
+          letter-spacing: 0.04em;
+        }
+        .portfolio-greeting span { display: inline-block; }
         .portfolio-loader-label {
           font-family: inherit;
           font-size: 12px;
